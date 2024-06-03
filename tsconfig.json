@@ -1,0 +1,33 @@
+{
+        "compilerOptions": {
+                "incremental": true,
+                "tsBuildInfoFile": "./dist/.tsbuildinfo",
+                "target": "ESNext",
+                "useDefineForClassFields": true,
+                "module": "NodeNext",
+                "rootDir": "./src",
+                "moduleResolution": "NodeNext",
+                "baseUrl": "./",
+                "paths": {},
+                "allowImportingTsExtensions": false,
+                "resolveJsonModule": true,
+                "sourceMap": true,
+                "outDir": "./dist",
+                "removeComments": true,
+                "esModuleInterop": true,
+                "forceConsistentCasingInFileNames": true,
+
+                "strict": true,
+                "noImplicitAny": true,
+                "alwaysStrict": true,
+                "noUnusedLocals": true,
+                "noUnusedParameters": true,
+                "noImplicitReturns": true,
+                "noFallthroughCasesInSwitch": true,
+                "skipLibCheck": true,
+                "experimentalDecorators": true,
+                "emitDecoratorMetadata": true
+        },
+        "include": ["src"],
+        "exclude": ["node_modules", "__test__", "./dist"]
+}
