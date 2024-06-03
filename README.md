@@ -1,6 +1,6 @@
 ### finpay
 
-> A minimalistic wallet system designed to simplify financial management.
+> A minimalist wallet system designed to simplify financial management.
 
 ### Objective
 
