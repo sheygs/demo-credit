@@ -1,3 +1,3 @@
-const sayHello = (name: string) => `Hello, ${name}`;
+const sayHello = (name: string): string => `Hello, ${name}`;
 
 console.log(sayHello("finpay"));
