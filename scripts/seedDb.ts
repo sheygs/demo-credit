@@ -1,1 +1,1 @@
-console.log("seeding...");
+console.log('seeding...');
