@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
-    "seed": "ts-node ./scripts/seedDb.ts"
+    "seed": "ts-node ./scripts/seed.ts"
   },
   "keywords": [
     "wallet-system",
