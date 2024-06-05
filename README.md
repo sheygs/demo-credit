@@ -15,42 +15,42 @@ The system must be robust and secure against financial frauds and technical issu
 
 1. Core Wallet Functionality:
 
-      - Create RESTful APIs for the wallet system that supports:
+   - Create RESTful APIs for the wallet system that supports:
 
-           - Crediting an amount to the wallet.
-           - Debiting an amount from the wallet.
+     - Crediting an amount to the wallet.
+     - Debiting an amount from the wallet.
 
-      - Ensure all operations are safe from race conditions and deadlocks.
+   - Ensure all operations are safe from race conditions and deadlocks.
 
 2. Technical Documentation:
 
-      - Document your code extensively.
-      - Write a technical report detailing decisions taken during the design and
-        implementation phases, including but not limited to:
+   - Document your code extensively.
+   - Write a technical report detailing decisions taken during the design and
+     implementation phases, including but not limited to:
 
-           - Schema design.
-           - Choice of libraries and frameworks.
-           - Any patterns used for safe concurrency.
-           - Security measures for financial transactions.
+     - Schema design.
+     - Choice of libraries and frameworks.
+     - Any patterns used for safe concurrency.
+     - Security measures for financial transactions.
 
 3. Postman Documentation:
 
-      - Provide a Postman collection that covers all API endpoints with example requests and expected responses.
+   - Provide a Postman collection that covers all API endpoints with example requests and expected responses.
 
 4. Admin Dashboard:
 
-      - Develop an admin dashboard with capabilities to:
+   - Develop an admin dashboard with capabilities to:
 
-           - Manually credit or debit amounts to/from wallets.
-           - View and export a weekly report analysis of transactions.
+     - Manually credit or debit amounts to/from wallets.
+     - View and export a weekly report analysis of transactions.
 
-      - Include functionalities to seed data into the system for testing purposes.
+   - Include functionalities to seed data into the system for testing purposes.
 
 5. Version Control:
 
-      - Push your code to a GitHub repository.
-      - Ensure the repository is public and includes a `README.md` file with setup and
-        running instructions.
+   - Push your code to a GitHub repository.
+   - Ensure the repository is public and includes a `README.md` file with setup and
+     running instructions.
 
 ### Tech Stack
 
@@ -75,24 +75,8 @@ The system must be robust and secure against financial frauds and technical issu
    $ npm install
 ```
 
-### Rename`.env.dev` to `.env` and populate variables
-
-```bash
-PORT=8282
-NODE_ENV=development
-SQLITE_PASSWORD=****
-SQLITE_PORT=5432
-SQLITE_HOST=postgres
-SQLITE_USER=postgres
-SQLITE_DATABASE=****
-JWT_SECRET=****
-JWT_EXPIRES_IN=*d
-JWT_COOKIE_EXPIRES_IN=*
-```
-
-#### Using Docker (Recommended)
-
-- Run `docker-compose up -d`.
+- Rename`.env.dev` to `.env` and populate variables
+- Run `npm run start:dev` to run the service
 - Open browser and visit `http://localhost:8282`
 
 ### Test
@@ -105,5 +89,3 @@ JWT_COOKIE_EXPIRES_IN=*
 
 - Please see `/postman_docs` directory on the root OR
 - Navigate to `http://localhost:8282/api-docs` on your computer to view the openapi documentation.
-
-#### Improvement Points
