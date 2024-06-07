@@ -15,49 +15,39 @@ The system must be robust and secure against financial frauds and technical issu
 
 1. Core Wallet Functionality:
 
-   - Create RESTful APIs for the wallet system that supports:
+      - Create RESTful APIs for the wallet system that supports:
 
-     - Crediting an amount to the wallet.
-     - Debiting an amount from the wallet.
+           - Crediting an amount to the wallet.
+           - Debiting an amount from the wallet.
 
-   - Ensure all operations are safe from race conditions and deadlocks.
+      - Ensure all operations are safe from race conditions and deadlocks.
 
 2. Technical Documentation:
 
-   - Document your code extensively.
-   - Write a technical report detailing decisions taken during the design and
-     implementation phases, including but not limited to:
+      - Document your code extensively.
+      - Write a technical report detailing decisions taken during the design and
+        implementation phases, including but not limited to:
 
-     - Schema design.
-     - Choice of libraries and frameworks.
-     - Any patterns used for safe concurrency.
-     - Security measures for financial transactions.
+           - Schema design.
+           - Choice of libraries and frameworks.
+           - Any patterns used for safe concurrency.
+           - Security measures for financial transactions.
 
-3. Postman Documentation:
+3. Admin Dashboard:
 
-   - Provide a Postman collection that covers all API endpoints with example requests and expected responses.
+      - Develop an admin dashboard with capabilities to:
 
-4. Admin Dashboard:
+           - Manually credit or debit amounts to/from wallets.
+           - View and export a weekly report analysis of transactions.
 
-   - Develop an admin dashboard with capabilities to:
-
-     - Manually credit or debit amounts to/from wallets.
-     - View and export a weekly report analysis of transactions.
-
-   - Include functionalities to seed data into the system for testing purposes.
-
-5. Version Control:
-
-   - Push your code to a GitHub repository.
-   - Ensure the repository is public and includes a `README.md` file with setup and
-     running instructions.
+      - Include functionalities to seed data into the system for testing purposes.
 
 ### Tech Stack
 
 - Language: [TypeScript](https://www.typescriptlang.org/)
 - Framework: [Express](https://expressjs.com/)
-- ORM: [Sequelize](https://sequelize.org/)
 - Runtime: [Node.js](https://nodejs.org/en)
+- ORM: [Sequelize](https://sequelize.org/)
 - Frontend (UI): [ReactJS](https://react.dev/)
 - Database: [SQLite](https://sqlite.org/)
 
@@ -71,13 +61,23 @@ The system must be robust and secure against financial frauds and technical issu
 
 ```bash
    $ git clone https://github.com/sheygs/finpay.git
-   $ cd finpay
+   $ cd backend
+   $ npm install
+   $ cd client
    $ npm install
 ```
 
 - Rename`.env.dev` to `.env` and populate variables
+
+#### Backend
+
 - Run `npm run start:dev` to run the service
 - Open browser and visit `http://localhost:8282`
+
+#### Frontend
+
+- Run `npm run dev` to run the client
+- Open browser and visit `http://localhost:5173`
 
 ### Test
 
@@ -87,5 +87,4 @@ The system must be robust and secure against financial frauds and technical issu
 
 ### Postman Documentation
 
-- Please see `/postman_docs` directory on the root OR
 - Navigate to `http://localhost:8282/api-docs` on your computer to view the openapi documentation.

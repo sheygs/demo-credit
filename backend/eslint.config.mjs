@@ -1,6 +1,6 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
 
 export default [
   { languageOptions: { globals: globals.node } },
@@ -8,14 +8,14 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      "no-useless-catch": "off",
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/ban-types": 0,
-      "no-unreachable": "error",
-      "no-var": "error",
-      "no-console": "warn",
-      "no-useless-assignment": "error",
-      "no-undef": "error",
+      'no-useless-catch': 'off',
+      '@typescript-eslint/no-explicit-any': 0,
+      '@typescript-eslint/ban-types': 0,
+      'no-unreachable': 'error',
+      'no-var': 'error',
+      'no-console': 'warn',
+      'no-useless-assignment': 'error',
+      'no-undef': 'error',
     },
   },
 ];
