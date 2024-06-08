@@ -1,11 +1,10 @@
-import 'module-alias/register';
+require('module-alias/register');
 
 import { hostname } from 'os';
 import express, { Express } from 'express';
 import { createServer } from 'http';
-import { config } from './shared/config';
 import { middlewares } from './app';
-import { exitLog } from './shared/utils';
+import { config, exitLog } from './shared';
 
 const {
   app: { env, port },
@@ -29,7 +28,7 @@ server.listen({ port }, (): void => {
   process.stdout.write(`⚙️ Env: ${env}\n`);
   process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
   process.stdout.write(
-    `🚀 ethereum-tracker-api server ready at http://${hostname()}:${port}\n`,
+    `🚀 finpay-api server running on http://${hostname()}:${port}\n`,
   );
 });
 

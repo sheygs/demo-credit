@@ -4,10 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import compression from 'compression';
 import express, { Application } from 'express';
-import { config } from './shared/config';
+import { config, Env, defaultErrorHandler } from './shared';
 // import indexRoute from './routes';
-import { Env } from './shared/types';
-import { defaultErrorHandler } from './shared/middlewares';
 
 export const middlewares = (app: Application): express.Application => {
   const publicDirPath = join(__dirname, '../public');
