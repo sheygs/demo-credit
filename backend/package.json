@@ -3,14 +3,18 @@
   "version": "0.0.1",
   "description": "> A minimalist wallet system designed to simplify financial management.",
   "main": "./dist/index.js",
+  "_moduleAliases": {
+    "@modules": "dist/modules",
+    "@shared": "dist/shared"
+  },
   "scripts": {
     "prod": "node ./dist/index.js",
-    "dev": "nodemon --watch \" ./src/**/*.ts\" --exec \"ts-node\" ./src/index.ts",
+    "dev": "nodemon --exec \"npm run build && npm run prod\" --watch src --ext ts",
     "build": "tsc",
     "clean": "rm -rf dist",
     "eslint": "eslint ./src/**/*.ts",
     "eslint:fix": "eslint ./src/**/*.ts --fix",
-    "prettify": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prettify": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|json)\"",
     "prettify:check": "prettier --check \"**/*.+(js|ts|json)\"",
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch",
@@ -34,6 +38,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/module-alias": "^2.0.4",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.0",
     "@types/sqlite3": "^3.1.11",
@@ -57,9 +62,11 @@
     "http-status": "^1.7.4",
     "joi": "^17.13.1",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
     "sqlite3": "^5.1.7",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.13.0"
   },
   "engines": {
     "node": ">= 20.0.0"
