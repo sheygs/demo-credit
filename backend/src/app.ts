@@ -3,11 +3,15 @@ import { join } from 'path';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import compression from 'compression';
-import express, { Application } from 'express';
-import { config, Env, defaultErrorHandler } from './shared';
-// import indexRoute from './routes';
+import express, { Application as App } from 'express';
+import {
+  config,
+  Env,
+  defaultErrorHandler,
+  indexRouter as indexRoute,
+} from './shared';
 
-export const middlewares = (app: Application): express.Application => {
+export const middlewares = (app: App): express.Application => {
   const publicDirPath = join(__dirname, '../public');
 
   app.use(express.static(publicDirPath));
@@ -30,7 +34,7 @@ export const middlewares = (app: Application): express.Application => {
     app.use(morgan('dev'));
   }
 
-  // app.use(indexRoute);
+  app.use(indexRoute);
   defaultErrorHandler(app);
 
   return app;
