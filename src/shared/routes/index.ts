@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { baseRoute } from './base';
-import { notFoundResponse } from '../utils';
+import { notFoundResponse } from '../util';
 
 const indexRouter: Router = Router();
 

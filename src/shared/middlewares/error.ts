@@ -5,7 +5,7 @@ import {
   NextFunction as NextFunc,
 } from 'express';
 
-import { BaseException, failureResponse } from '../utils';
+import { BaseException, failureResponse } from '../util';
 
 const handleGlobalError = (
   error: unknown,

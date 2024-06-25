@@ -1,7 +1,7 @@
 import { Response as Res, Request as Req } from 'express';
 import { OK } from 'http-status';
 import { config } from '../config';
-import { successResponse } from '../utils';
+import { successResponse } from '../util';
 import { AppResponse } from '../types';
 
 const baseRoute = (_: Req, res: Res): void => {

@@ -1,12 +1,8 @@
 {
-  "name": "@finpay/backend",
+  "name": "demo-credit",
   "version": "0.0.1",
-  "description": "> A minimalist wallet system designed to simplify financial management.",
+  "description": "A mobile lending app",
   "main": "./dist/index.js",
-  "_moduleAliases": {
-    "@modules": "dist/modules",
-    "@shared": "dist/shared"
-  },
   "scripts": {
     "prod": "node ./dist/index.js",
     "dev": "nodemon --exec \"npm run build && npm run prod\" --watch src --ext ts",
@@ -27,7 +23,7 @@
     "fintech"
   ],
   "author": "Olusegun Ekoh (sheygs)",
-  "repository": "https://github.com/sheygs/finpay.git",
+  "repository": "https://github.com/sheygs/demo-credit.git",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
