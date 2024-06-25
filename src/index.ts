@@ -1,4 +1,4 @@
-require('module-alias/register');
+// require('module-alias/register');
 
 import { hostname } from 'os';
 import express, { Express } from 'express';

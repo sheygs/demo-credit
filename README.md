@@ -1,55 +1,39 @@
-### finpay
+### demo-credit
 
-> A minimalist wallet system designed to simplify financial management.
+> A mobile lending app.
 
 ### Objective
 
-The system must be robust and secure against financial frauds and technical issues like race conditions and deadlocks.
+Demo Credit is a mobile lending app that requires wallet functionality. This is needed as borrowers need a wallet to receive the loans they have been granted and also send the money for repayments.
 
 ### Technical Requirement
 
-- Implement safeguards against race conditions, deadlocks, and ensure
-  transactional integrity.
-
 ### Tasks
 
-1. Core Wallet Functionality:
+- A user can create an account
+- A user can fund their account
+- A user can transfer funds to another user’s account
+- A user can withdraw funds from their account.
+- A user with records in the Lendsqr Adjutor [Karma blacklist](https://api.adjutor.io/) should never be onboarded
 
-      - Create RESTful APIs for the wallet system that supports:
+Bonus:
 
-           - Crediting an amount to the wallet.
-           - Debiting an amount from the wallet.
+- View and export a weekly report analysis of transactions.
 
-      - Ensure all operations are safe from race conditions and deadlocks.
+Tips:
 
-2. Technical Documentation:
-
-      - Document your code extensively.
-      - Write a technical report detailing decisions taken during the design and
-        implementation phases, including but not limited to:
-
-           - Schema design.
-           - Choice of libraries and frameworks.
-           - Any patterns used for safe concurrency.
-           - Security measures for financial transactions.
-
-3. Admin Dashboard:
-
-      - Develop an admin dashboard with capabilities to:
-
-           - Manually credit or debit amounts to/from wallets.
-           - View and export a weekly report analysis of transactions.
-
-      - Include functionalities to seed data into the system for testing purposes.
+- Ensure all operations are safe from race conditions, deadlocks and transactional integrity
+- Any patterns used for safe concurrency.
+- Security measures for financial transactions.
 
 ### Tech Stack
 
 - Language: [TypeScript](https://www.typescriptlang.org/)
 - Framework: [Express](https://expressjs.com/)
 - Runtime: [Node.js](https://nodejs.org/en)
-- ORM: [Sequelize](https://sequelize.org/)
-- Frontend (UI): [ReactJS](https://react.dev/)
-- Database: [SQLite](https://sqlite.org/)
+- KnexJS: [KnexJS](https://knexjs.org/)
+- Dependency Injection: [Tsyringe](https://www.npmjs.com/package/tsyringe)
+- Database: [MySQL](https://www.mysql.com/)
 
 ### Setup
 
@@ -60,10 +44,8 @@ The system must be robust and secure against financial frauds and technical issu
 ### Installation 📦
 
 ```bash
-   $ git clone https://github.com/sheygs/finpay.git
+   $ git clone https://github.com/sheygs/demo-credit.git
    $ cd backend
-   $ npm install
-   $ cd client
    $ npm install
 ```
 
@@ -73,11 +55,6 @@ The system must be robust and secure against financial frauds and technical issu
 
 - Run `npm run start:dev` to run the service
 - Open browser and visit `http://localhost:8282`
-
-#### Frontend
-
-- Run `npm run dev` to run the client
-- Open browser and visit `http://localhost:5173`
 
 ### Test
 
