@@ -28,7 +28,7 @@ server.listen({ port }, (): void => {
   process.stdout.write(`⚙️ Env: ${env}\n`);
   process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
   process.stdout.write(
-    `🚀 finpay-api server running on http://${hostname()}:${port}\n`,
+    `🚀 demo-credit server running on http://${hostname()}:${port}\n`,
   );
 });
 

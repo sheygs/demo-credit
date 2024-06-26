@@ -1,6 +1,6 @@
 ### demo-credit
 
-> Demo credit is a mobile lending app.
+> Demo credit is a mobile lending application
 
 ### Objective
 

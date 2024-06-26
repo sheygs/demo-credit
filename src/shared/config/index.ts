@@ -49,22 +49,22 @@ export const config: Config = {
     /**
      *  Database User
      */
-    user: process.env.POSTGRES_USER ?? 'postgres',
+    user: process.env.MYSQL_USER ?? 'mysql',
     /**
      *  Database Password
      */
-    password: process.env.POSTGRES_PASSWORD ?? '',
+    password: process.env.MYSQL_PASSWORD ?? '',
     /**
      *  Database Port
      */
-    port: process.env.POSTGRES_PORT ?? 5432,
+    port: process.env.MYSQL_PORT ?? 5432,
     /**
      *  Database Host
      */
-    host: process.env.POSTGRES_HOST ?? 'localhost',
+    host: process.env.MYSQL_HOST ?? 'localhost',
     /**
      *  Database Name
      */
-    name: process.env.POSTGRES_DATABASE ?? '',
+    name: process.env.MYSQL_DATABASE ?? '',
   },
 };
