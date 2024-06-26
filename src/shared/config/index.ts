@@ -31,7 +31,7 @@ export const config: Config = {
     /**
      *  Node Environment.
      */
-    env: process.env.NODE_ENV ?? Env.DEVELOPMENT,
+    environment: process.env.NODE_ENV ?? Env.DEVELOPMENT,
     /**
      *  JWT Secret
      */

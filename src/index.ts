@@ -7,7 +7,7 @@ import { middlewares } from './app';
 import { config, exitLog } from './shared';
 
 const {
-  app: { env, port },
+  app: { environment, port },
 } = config;
 
 const app: Express = express();
@@ -25,7 +25,7 @@ process
   .on('exit', () => exitLog(null, 'exit'));
 
 server.listen({ port }, (): void => {
-  process.stdout.write(`⚙️ Env: ${env}\n`);
+  process.stdout.write(`⚙️ Env: ${environment}\n`);
   process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
   process.stdout.write(
     `🚀 demo-credit api running on http://${hostname()}:${port}\n`,

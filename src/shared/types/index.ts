@@ -64,7 +64,7 @@ type Config = {
     author: string;
     baseUrl: string | undefined;
     port: string | number;
-    env: string;
+    environment: string;
     jwtSecret: string;
     jwtExpiresIn: string;
   };

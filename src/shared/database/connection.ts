@@ -4,6 +4,6 @@ import knexConfig from '../../../knexfile';
 
 const { app } = config;
 
-const environment = app.env;
+const nodeEnv = app.environment;
 
-export const knexInstance = knex(knexConfig[environment]);
+export const knexDb = knex(knexConfig[nodeEnv]);
