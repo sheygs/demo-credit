@@ -18,16 +18,15 @@ const logger: winston.Logger = winston.createLogger({
 });
 
 const exitLog = (error: Error | null, event: string): never => {
-  let msg: string = '';
+  // eslint-disable-next-line no-useless-assignment
+  let message = '';
 
   if (error) {
-    msg = `\n[!ERROR][${event}] => ${error}`;
-    process.stdout.write(msg);
-    logger.error(msg);
+    message = `\n[!Error:][${event}] => ${error}`;
+    process.stdout.write(message);
   } else {
-    msg = `\n![${event}] EVENT CAUSE EXIT`;
-    process.stdout.write(msg);
-    logger.info(msg);
+    message = `\n![${event}] Event Cause: EXIT`;
+    process.stdout.write(message);
   }
 
   process.exit(error ? 1 : 0);
