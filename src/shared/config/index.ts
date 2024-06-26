@@ -25,9 +25,9 @@ export const config: Config = {
      */
     baseUrl: process.env.BASE_URL,
     /**
-     *  Node/App Port.
+     *  App Port.
      */
-    port: process.env.PORT ?? 4000,
+    port: process.env.NODE_PORT ?? 4000,
     /**
      *  Node Environment.
      */
@@ -40,10 +40,6 @@ export const config: Config = {
      *  JWT Secret Expiry
      */
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '',
-    /***
-     *  Auth Token
-     */
-    jwtToken: process.env.JWT_TOKEN ?? '',
   },
   database: {
     /**

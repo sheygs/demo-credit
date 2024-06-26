@@ -6,9 +6,11 @@
 
 Demo Credit is a mobile lending app that includes wallet functionality. Borrowers use the wallet to receive granted loans and make repayments.
 
-### Technical Requirement
+### Project Architecture
 
-### Tasks
+Overall, the project is designed to be scalable, maintainable and extensible. The use of a modular monolithic architecture, where all key features are modularized. This can easily spin off to a micro-service that easily promotes code organization and separation of concerns.
+
+### Technical Requirement
 
 - A user can create an account
 - A user can fund their account
@@ -16,23 +18,12 @@ Demo Credit is a mobile lending app that includes wallet functionality. Borrower
 - A user can withdraw funds from their account.
 - A user with records in the Lendsqr Adjutor [Karma blacklist](https://api.adjutor.io/) should never be onboarded
 
-Bonus:
-
-- View and export a weekly report analysis of transactions.
-
-Tips:
-
-- Ensure all operations are safe from race conditions, deadlocks and transactional integrity
-- Any patterns used for safe concurrency.
-- Security measures for financial transactions.
-
 ### Tech Stack
 
 - Language: [TypeScript](https://www.typescriptlang.org/)
 - Framework: [Express](https://expressjs.com/)
 - Runtime: [Node.js](https://nodejs.org/en)
 - KnexJS: [KnexJS](https://knexjs.org/)
-- Dependency Injection: [Tsyringe](https://www.npmjs.com/package/tsyringe)
 - Database: [MySQL](https://www.mysql.com/)
 
 ### Setup
@@ -49,12 +40,14 @@ Tips:
    $ npm install
 ```
 
-- Rename`.env.dev` to `.env` and populate variables
+- Rename`.env.dev` to `.env` and populate variables with `****`
 
-#### Backend
+### Seeding
 
-- Run `npm run start:dev` to run the service
-- Open browser and visit `http://localhost:8282`
+### Using Docker (Recommended)
+
+- Run `docker compose up -d`.
+- Open browser and visit `http://localhost:8281`
 
 ### Test
 
@@ -62,6 +55,6 @@ Tips:
    $ npm run test
 ```
 
-### Postman Documentation
+### API Documentation
 
-- Navigate to `http://localhost:8282/api-docs` on your computer to view the openapi documentation.
+- Navigate to `http://localhost:8281/api-docs` on your computer to view the openapi documentation.

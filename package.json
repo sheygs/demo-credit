@@ -2,9 +2,9 @@
   "name": "demo-credit",
   "version": "0.0.1",
   "description": "Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.",
-  "main": "./dist/index.js",
+  "main": "./dist/src/index.js",
   "scripts": {
-    "prod": "node ./dist/index.js",
+    "prod": "node ./dist/src/index.js",
     "dev": "nodemon --exec \"npm run build && npm run prod\" --watch src --ext ts",
     "build": "tsc",
     "clean": "rm -rf dist",
@@ -15,6 +15,8 @@
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
+    "migration:up": "npx knex migrate:latest",
+    "migration:down": "npx knex migrate:rollback",
     "seed": "ts-node ",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down"
@@ -65,7 +67,7 @@
     "knex": "^3.1.0",
     "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^3.10.1",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.13.0"
   },

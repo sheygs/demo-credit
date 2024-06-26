@@ -2,12 +2,12 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "target": "ESNext",
+    "target": "es6",
     "useDefineForClassFields": true,
     "module": "commonjs",
-    "rootDir": "./src",
+    "rootDir": ".",
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     },
@@ -30,6 +30,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src"],
+  "include": ["src", "./knexfile.ts"],
   "exclude": ["node_modules", "__test__", "./dist"]
 }

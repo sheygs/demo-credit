@@ -67,7 +67,6 @@ type Config = {
     env: string;
     jwtSecret: string;
     jwtExpiresIn: string;
-    jwtToken?: string;
   };
 
   database: {

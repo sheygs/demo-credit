@@ -18,7 +18,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
-      - '3306:3306'
+      - '3305:3306'
     volumes:
       - ./volumes/mysql:/var/lib/mysql
     healthcheck:
@@ -34,14 +34,11 @@ services:
     environment:
       - NODE_PORT=${NODE_PORT}
       - NODE_ENV=${NODE_ENV}
-      #     - MYSQL_USER=${MYSQL_USER}
-      #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      #     - MYSQL_HOST=mysql
-      #     - MYSQL_PORT=3306
-      #     - MYSQL_DATABASE=${MYSQL_DATABASE}
-      #     - REDIS_PORT=${REDIS_PORT}
-      #     - REDIS_HOST=redis
-      #     - REDIS_CACHE_TTL=${REDIS_CACHE_TTL}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
 
     ports:
       - '8281:8282'
