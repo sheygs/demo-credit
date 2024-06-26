@@ -1,7 +1,7 @@
 {
   "name": "demo-credit",
   "version": "0.0.1",
-  "description": "A mobile lending application",
+  "description": "Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.",
   "main": "./dist/index.js",
   "scripts": {
     "prod": "node ./dist/index.js",

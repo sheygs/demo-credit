@@ -1,10 +1,10 @@
 ### demo-credit
 
-> Demo credit is a mobile lending application
+> Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.
 
 ### Objective
 
-Demo Credit is a mobile lending app that requires wallet functionality. This is needed as borrowers need a wallet to receive the loans they have been granted and also send the money for repayments.
+Demo Credit is a mobile lending app that includes wallet functionality. Borrowers use the wallet to receive granted loans and make repayments.
 
 ### Technical Requirement
 
