@@ -40,6 +40,8 @@ export const config: Config = {
      *  JWT Secret Expiry
      */
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '',
+
+    saltRounds: '10',
   },
   database: {
     /**

@@ -1,9 +1,11 @@
-import knex from 'knex';
+import Knex from 'knex';
 import { config } from '../config';
-import knexConfig from '../../../knexfile';
+import knexConfigs from '../../../knexfile';
 
 const { app } = config;
 
-const nodeEnv = app.environment;
+const appEnv = app.environment;
 
-export const knexDb = knex(knexConfig[nodeEnv]);
+console.log({ appEnv, knexConfigs });
+
+export const db = Knex(knexConfigs[appEnv]);

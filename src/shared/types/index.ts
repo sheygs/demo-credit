@@ -67,6 +67,7 @@ type Config = {
     environment: string;
     jwtSecret: string;
     jwtExpiresIn: string;
+    saltRounds: string;
   };
 
   database: {

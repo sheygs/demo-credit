@@ -26,24 +26,24 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  api-service:
-    container_name: api-service
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - NODE_PORT=${NODE_PORT}
-      - NODE_ENV=${NODE_ENV}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_HOST=mysql
-      - MYSQL_PORT=3306
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+  # api-service:
+  #   container_name: api-service
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - NODE_PORT=${NODE_PORT}
+  #     - NODE_ENV=${NODE_ENV}
+  #     - MYSQL_USER=${MYSQL_USER}
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #     - MYSQL_HOST=mysql
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_DATABASE=${MYSQL_DATABASE}
 
-    ports:
-      - '8281:8282'
-    depends_on:
-      mysql:
-        condition: service_healthy
-      redis:
-        condition: service_started
+  #   ports:
+  #     - '8281:8282'
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_started

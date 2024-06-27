@@ -1,2 +1,2 @@
 export * from './models';
-export { knexDb } from './connection';
+export * from './connection';
