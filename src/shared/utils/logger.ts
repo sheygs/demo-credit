@@ -25,7 +25,7 @@ const exitLog = (error: Error | null, event: string): never => {
     message = `\n[!Error:][${event}] => ${error}`;
     process.stdout.write(message);
   } else {
-    message = `\n![${event}] Event Cause: EXIT`;
+    message = `\n![${event}] Event Cause: EXIT\n`;
     process.stdout.write(message);
   }
 

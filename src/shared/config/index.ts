@@ -25,13 +25,13 @@ export const config: Config = {
      */
     baseUrl: process.env.BASE_URL,
     /**
-     *  Node/App Port.
+     *  App Port.
      */
-    port: process.env.PORT ?? 4000,
+    port: process.env.NODE_PORT ?? 4000,
     /**
      *  Node Environment.
      */
-    env: process.env.NODE_ENV ?? Env.DEVELOPMENT,
+    environment: process.env.NODE_ENV ?? Env.DEVELOPMENT,
     /**
      *  JWT Secret
      */
@@ -40,10 +40,8 @@ export const config: Config = {
      *  JWT Secret Expiry
      */
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '',
-    /***
-     *  Auth Token
-     */
-    jwtToken: process.env.JWT_TOKEN ?? '',
+
+    saltRounds: '10',
   },
   database: {
     /**

@@ -24,7 +24,7 @@ export const middlewares = (app: App): express.Application => {
     }),
   );
 
-  if (config.app.env !== Env.TEST) {
+  if (config.app.environment !== Env.TEST) {
     app.use(morgan('dev'));
   }
 

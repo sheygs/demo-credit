@@ -13,7 +13,7 @@ COPY --chown=node:node package*.json ./
 USER node
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # Copy all other files and change ownership
 COPY --chown=node:node . .
@@ -39,7 +39,7 @@ COPY --chown=node:node package*.json ./
 USER node
 
 # Install production dependencies
-RUN npm ci --legacy-peer-deps --only=production
+RUN npm ci --only=production
 
 # Copy built files from the build stage
 COPY --from=build /home/node/app/dist ./dist
@@ -49,4 +49,4 @@ ENV PORT 8282
 EXPOSE 8282
 
 # Use dumb-init to start the application
-CMD ["dumb-init", "node", "dist/index.js"]
+CMD ["dumb-init", "node", "dist/src/index.js"]
