@@ -5,11 +5,6 @@ class UtilService {
   private static readonly saltRounds = config.app.saltRounds;
 
   static async hash(value: string): Promise<string> {
-    // console.log({
-    //   value,
-    //   xhash: await bcrypt.hash(value, +this.saltRounds),
-    //   x: +this.saltRounds,
-    // });
     const hashValue = await bcrypt.hash(value, Number(this.saltRounds));
     return hashValue;
   }

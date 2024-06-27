@@ -6,15 +6,12 @@ import { AuthService } from './auth.service';
 
 class AuthController {
   static async signUp(req: Req, res: Res, next: NextFn) {
-    console.log({ body: req.body });
-
     try {
       const user = await AuthService.signUp(req);
-
       successResponse<{
         user: UserType & DateType;
         token: string;
-      }>(res, CREATED, 'account created', user);
+      }>(res, CREATED, 'user account created', user);
     } catch (error) {
       next(error);
     }

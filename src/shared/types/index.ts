@@ -28,6 +28,10 @@ type AppResponse = {
   environment: string;
 };
 
+interface ObjectProps {
+  [prop: string]: any;
+}
+
 type NotFoundError = {
   code: number;
   status: Status;
@@ -68,6 +72,7 @@ type Config = {
     jwtSecret: string;
     jwtExpiresIn: string;
     saltRounds: string;
+    blackListApiSecret: string;
   };
 
   database: {
@@ -79,6 +84,41 @@ type Config = {
   };
 };
 
+interface BlackListedResponse {
+  status: string;
+  message: string;
+  data?: Data;
+  meta: Meta;
+}
+
+interface Data {
+  karma_identity: string;
+  amount_in_contention: string;
+  reason: any;
+  default_date: string;
+  karma_type: KarmaType;
+  karma_identity_type: KarmaIdentityType;
+  reporting_entity: ReportingEntity;
+}
+
+interface KarmaType {
+  karma: string;
+}
+
+interface KarmaIdentityType {
+  identity_type: string;
+}
+
+interface ReportingEntity {
+  name: string;
+  email: string;
+}
+
+export interface Meta {
+  cost?: number;
+  balance: number;
+}
+
 export {
   Env,
   Status,
@@ -86,5 +126,7 @@ export {
   SuccessResponse,
   FailureResponse,
   NotFoundResponse,
+  BlackListedResponse,
   Config,
+  ObjectProps,
 };

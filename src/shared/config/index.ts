@@ -23,7 +23,7 @@ export const config: Config = {
     /**
      *  Base URL.
      */
-    baseUrl: process.env.BASE_URL,
+    baseUrl: process.env.API_BASE_URL ?? '',
     /**
      *  App Port.
      */
@@ -42,6 +42,8 @@ export const config: Config = {
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '',
 
     saltRounds: '10',
+
+    blackListApiSecret: process.env.APP_SECRET_KEY ?? 'mySecret',
   },
   database: {
     /**
