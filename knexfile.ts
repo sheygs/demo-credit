@@ -24,23 +24,23 @@ const commonConfig: Knex.Config = {
     max: 10,
   },
   migrations: {
-    directory: 'src/shared/database/migrations',
+    directory: './src/shared/database/migrations',
   },
   seeds: {
-    directory: 'src/shared/database/seeds',
+    directory: './src/shared/database/seeds',
   },
   log: {
     warn(message: any) {
       // eslint-disable-next-line no-console
-      console.log({ message, n: 1 });
+      console.log({ message });
     },
     error(message: any) {
       // eslint-disable-next-line no-console
-      console.log({ message, n: 2 });
+      console.log({ message });
     },
     debug(message: any) {
       // eslint-disable-next-line no-console
-      console.log({ message, n: 3 });
+      console.log({ message });
     },
     enableColors: true,
   },

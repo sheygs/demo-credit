@@ -1,35 +1,36 @@
 import { Request as Req } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { UserType, UserService } from '../user';
+import { BlackListService } from '../blacklist';
 import {
-  BadRequestException,
   config,
+  BadRequestException,
   UnprocessableEntityException,
   UtilService,
+  ForbiddenException,
 } from '../../shared';
 
 class AuthService {
   static async signUp(req: Req) {
     const { email, password } = req.body;
 
-    // email = 'sheygs@gmail.com';
-
-    console.log('in auth service');
-    console.log({ body: req.body });
-
     try {
       const user = await UserService.findUser(email);
 
-      console.log({ user });
-
       if (user) {
-        throw new BadRequestException('account exists');
+        throw new BadRequestException('account exist');
+      }
+
+      const response = await BlackListService.verifyCustomer(email);
+
+      if (response.status === 'success' && response?.data) {
+        throw new ForbiddenException('Your account has been blacklisted');
       }
 
       const hashed = await UtilService.hash(password);
 
       if (!hashed) {
-        throw new BadRequestException('failed to hash');
+        throw new BadRequestException('failed to hash password');
       }
 
       const createdUser = await UserService.create({
