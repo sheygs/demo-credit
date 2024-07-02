@@ -8,6 +8,7 @@ import {
   UnprocessableEntityException,
   UtilService,
   ForbiddenException,
+  UnauthorizedException,
 } from '../../shared';
 
 class AuthService {
@@ -21,10 +22,18 @@ class AuthService {
         throw new BadRequestException('account exist');
       }
 
-      const response = await BlackListService.verifyCustomer(email);
+      const {
+        status,
+        data = {},
+        message,
+      } = await BlackListService.verifyCustomer(email);
 
-      if (response.status === 'success' && response?.data) {
-        throw new ForbiddenException('Your account has been blacklisted');
+      if (status === 'error') {
+        throw new UnauthorizedException(message);
+      }
+
+      if (status === 'success' && Object.keys(data).length) {
+        throw new ForbiddenException('this account has been blacklisted');
       }
 
       const hashed = await UtilService.hash(password);
@@ -41,7 +50,7 @@ class AuthService {
       const token = this.generateToken(createdUser);
 
       if (!createdUser) {
-        throw new UnprocessableEntityException('Unable to create user');
+        throw new UnprocessableEntityException('unable to create user');
       }
 
       Reflect.deleteProperty(createdUser, 'password');

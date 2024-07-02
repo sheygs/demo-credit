@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import type { Knex } from 'knex';
-import { config, Env, UtilService } from './src/shared';
+import { config, Env, logger, UtilService } from './src/shared';
 
 const {
   database: { host, port, user, password, name },
@@ -24,23 +24,20 @@ const commonConfig: Knex.Config = {
     max: 10,
   },
   migrations: {
-    directory: './src/shared/database/migrations',
+    directory: 'src/shared/database/migrations',
   },
   seeds: {
-    directory: './src/shared/database/seeds',
+    directory: 'src/shared/database/seeds',
   },
   log: {
     warn(message: any) {
-      // eslint-disable-next-line no-console
-      console.log({ message });
+      logger.warn(JSON.stringify(message));
     },
     error(message: any) {
-      // eslint-disable-next-line no-console
-      console.log({ message });
+      logger.error(JSON.stringify(message));
     },
     debug(message: any) {
-      // eslint-disable-next-line no-console
-      console.log({ message });
+      logger.debug(JSON.stringify(message));
     },
     enableColors: true,
   },
