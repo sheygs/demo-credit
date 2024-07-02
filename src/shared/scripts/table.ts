@@ -34,7 +34,7 @@ const migrationsDir = getMigrationDirectory('database/migrations');
       migrationFiles.map((file) => executeMigration(connection, file)),
     );
 
-    logger.info('all migrations executed ✅');
+    logger.info('migrations executed ✅');
 
     // close the connection
     await connection.end();

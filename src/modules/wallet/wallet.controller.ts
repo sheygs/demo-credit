@@ -1,0 +1,3 @@
+class WalletController {}
+
+export { WalletController };
