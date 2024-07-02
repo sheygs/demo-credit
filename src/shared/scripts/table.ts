@@ -1,32 +1,16 @@
 import mysql from 'mysql2/promise';
-import fs from 'fs';
-import path from 'path';
 import { config } from '../config';
-import { logger } from '../utils';
+import { logger, MigrationManager } from '../utils';
 
 const {
   database: { host, user, password, name, port },
 } = config;
 
+const { getMigrationDirectory, executeMigration, getMigrationFiles } =
+  MigrationManager;
+
 // directory containing the migration files
-const migrationsDir = path.join(__dirname, '..', 'database/migrations');
-
-// get migration files from the directory
-const getMigrationFiles = (dir: string) => {
-  return fs
-    .readdirSync(dir)
-    .filter((file) => path.extname(file).toLowerCase() === '.sql')
-    .map((file) => path.join(dir, file));
-};
-
-// execute a migration file
-const executeMigration = async (
-  connection: mysql.Connection,
-  file: fs.PathOrFileDescriptor,
-) => {
-  const migrationSQL = fs.readFileSync(file, 'utf8');
-  await connection.query(migrationSQL);
-};
+const migrationsDir = getMigrationDirectory('database/migrations');
 
 (async () => {
   try {
@@ -52,7 +36,7 @@ const executeMigration = async (
 
     logger.info('all migrations executed ✅');
 
-    // Close the connection
+    // close the connection
     await connection.end();
 
     logger.info('connection closed');

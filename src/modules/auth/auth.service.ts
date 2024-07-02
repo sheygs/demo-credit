@@ -6,7 +6,7 @@ import {
   config,
   BadRequestException,
   UnprocessableEntityException,
-  UtilService,
+  SecurityUtils,
   ForbiddenException,
   UnauthorizedException,
 } from '../../shared';
@@ -36,7 +36,7 @@ class AuthService {
         throw new ForbiddenException('this account has been blacklisted');
       }
 
-      const hashed = await UtilService.hash(password);
+      const hashed = await SecurityUtils.hash(password);
 
       if (!hashed) {
         throw new BadRequestException('failed to hash password');
