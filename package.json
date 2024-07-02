@@ -15,11 +15,9 @@
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
-    "migration:up": "npx knex migrate:latest",
-    "migration:down": "npx knex migrate:rollback",
-    "seed": "ts-node ",
     "docker:up": "docker compose up -d",
-    "docker:down": "docker compose down"
+    "docker:down": "docker compose down",
+    "migrate": "ts-node ./src/shared/scripts/table.ts"
   },
   "keywords": [
     "lending",

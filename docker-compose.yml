@@ -10,7 +10,6 @@ services:
   mysql:
     container_name: mysql
     image: mysql
-    command: --mysql-native-password=ON
     restart: always
     environment:
       - MYSQL_USER=${MYSQL_USER}
