@@ -128,20 +128,6 @@ class WalletService {
         );
       }
 
-      console.log({
-        //   message: response.message,
-        //   status: response.status,
-        //   reference: response.data.reference,
-        //   amount: response.data.amount,
-        //   metadata: response.data.metadata,
-        //   typeof: typeof response.data.metadata,
-        //   amount: response.data.metadata.amount,
-        //   user_id,
-        //   currency,
-        //   transactionStatus: response.data.status,
-        //   gateway_response: response.data.gateway_response,
-      });
-
       await WalletModel.updateWallet('id', {});
 
       return response;
@@ -197,7 +183,7 @@ class WalletService {
       await trx.commit();
 
       return transaction;
-    } catch (error) {
+    } catch (error: unknown) {
       await trx.rollback();
 
       throw error;
