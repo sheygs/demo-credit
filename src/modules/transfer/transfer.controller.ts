@@ -8,7 +8,7 @@ class TransferController {
     try {
       const response = await WalletService.transferToWallet(req.body);
 
-      successResponse(res, OK, 'transfer initiated', response);
+      successResponse(res, OK, 'transfer successful', response);
     } catch (error) {
       next(error);
     }

@@ -1,8 +1,10 @@
+import { Knex } from 'knex';
 import { PaystackService } from '../paystack';
-import { TransactionModel } from '../transactions';
+import { TransactionModel, TransactionType as Transaction } from '../transactions';
 import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
 import {
+  db,
   FundWalletRequest,
   NotFoundException,
   Status,
@@ -10,7 +12,6 @@ import {
   TransactionType,
   TransferRequest,
   UnprocessableEntityException,
-  ZERO_BALANCE,
 } from '../../shared';
 
 class WalletService {
@@ -149,38 +150,37 @@ class WalletService {
     }
   }
 
-  static async transferToWallet(payload: TransferRequest) {
-    // TODO: implement transaction
-    const { source_wallet_id, destination_wallet_id, amount } = payload;
+  static async transferToWallet(transferReq: TransferRequest): Promise<Transaction> {
+    const { source_wallet_id, destination_wallet_id, amount } = transferReq;
+
+    const trx: Knex.Transaction<any, any[]> = await db.transaction();
 
     try {
-      const sourceWallet = await WalletService.getWalletByID(source_wallet_id);
-
-      const destinationWallet =
-        await WalletService.getWalletByID(destination_wallet_id);
+      const [sourceWallet, destinationWallet] = await Promise.all([
+        WalletService.getWalletByID(source_wallet_id),
+        WalletService.getWalletByID(destination_wallet_id),
+      ]);
 
       const sourceBalance = Number(sourceWallet.balance);
 
       const destinationBalance = Number(destinationWallet.balance);
 
-      if (this.hasSufficientBalance(sourceBalance, Number(amount))) {
+      if (sourceBalance < Number(amount)) {
         throw new UnprocessableEntityException('Insufficient funds');
       }
 
-      const newSourceBalance = sourceBalance - Number(amount);
+      await Promise.all([
+        trx('wallets')
+          .where({ id: source_wallet_id })
+          .update({ balance: sourceBalance - Number(amount) }),
 
-      const newDestinationBalance = destinationBalance + Number(amount);
-
-      await WalletModel.updateWallet(source_wallet_id, {
-        balance: newSourceBalance,
-      });
-
-      await WalletModel.updateWallet(destination_wallet_id, {
-        balance: newDestinationBalance,
-      });
+        trx('wallets')
+          .where({ id: destination_wallet_id })
+          .update({ balance: destinationBalance + Number(amount) }),
+      ]);
 
       // create transaction log
-      const transaction = await this.createTransaction({
+      const [transaction_id] = await trx('transactions').insert({
         source_wallet_id: sourceWallet.id.toString(),
         destination_wallet_id: destinationWallet.id.toString(),
         amount,
@@ -188,14 +188,20 @@ class WalletService {
         status: Status.SUCCESS,
       });
 
+      const transaction: Transaction = await trx('transactions')
+        .where({
+          id: transaction_id,
+        })
+        .first();
+
+      await trx.commit();
+
       return transaction;
     } catch (error) {
+      await trx.rollback();
+
       throw error;
     }
-  }
-
-  static hasSufficientBalance(balance: number, amount: number) {
-    return balance <= ZERO_BALANCE || balance < amount;
   }
 
   static async createTransaction(transactionReq: TransactionRequest) {
