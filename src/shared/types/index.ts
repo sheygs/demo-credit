@@ -9,6 +9,12 @@ enum Status {
   FAILURE = 'failure',
 }
 
+enum TransactionType {
+  DEPOSIT = 'deposit',
+  WITHDRAWAL = 'withdrawal',
+  TRANSFER = 'transfer',
+}
+
 export enum RequestPath {
   BODY = 'body',
   QUERY = 'query',
@@ -72,7 +78,7 @@ type Config = {
     jwtSecret: string;
     jwtExpiresIn: string;
     saltRounds: string;
-    blackListApiSecret: string;
+    adjutorApiSecret: string;
     payStackApiKey: string;
   };
 
@@ -128,9 +134,29 @@ interface InitializePaymentReq {
   user_id: string;
 }
 
+interface FundWalletRequest {
+  user_id?: string;
+  reference: string;
+}
+
+interface TransferRequest {
+  source_wallet_id: string;
+  destination_wallet_id: string;
+  amount: string;
+}
+
+interface TransactionRequest {
+  source_wallet_id: string;
+  destination_wallet_id: string | undefined;
+  amount: string;
+  transaction_type: string;
+  status: string;
+}
+
 export {
   Env,
   Status,
+  TransactionType,
   AppResponse,
   SuccessResponse,
   FailureResponse,
@@ -139,4 +165,7 @@ export {
   Config,
   ObjectProps,
   InitializePaymentReq,
+  FundWalletRequest,
+  TransferRequest,
+  TransactionRequest,
 };

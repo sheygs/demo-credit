@@ -1,12 +1,17 @@
-import { NotFoundException, UnprocessableEntityException } from '../../shared';
 import { PaystackService } from '../paystack';
+import { TransactionModel } from '../transactions';
 import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
-
-interface FundWallet {
-  user_id?: string;
-  reference: string;
-}
+import {
+  FundWalletRequest,
+  NotFoundException,
+  Status,
+  TransactionRequest,
+  TransactionType,
+  TransferRequest,
+  UnprocessableEntityException,
+  ZERO_BALANCE,
+} from '../../shared';
 
 class WalletService {
   static async createWallet(payload: Omit<WalletType, 'id'>): Promise<WalletType> {
@@ -80,6 +85,14 @@ class WalletService {
         balance: newBalance,
       });
 
+      await this.createTransaction({
+        source_wallet_id: wallet_id,
+        destination_wallet_id: undefined,
+        amount,
+        transaction_type: TransactionType.DEPOSIT,
+        status: Status.SUCCESS,
+      });
+
       return result;
     } catch (error) {
       throw error;
@@ -100,7 +113,7 @@ class WalletService {
     }
   }
 
-  static async creditWallet(payload: FundWallet) {
+  static async creditWallet(payload: FundWalletRequest) {
     try {
       const response = await PaystackService.verifyPaymentTransaction(
         payload.reference,
@@ -131,6 +144,65 @@ class WalletService {
       await WalletModel.updateWallet('id', {});
 
       return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async transferToWallet(payload: TransferRequest) {
+    // TODO: implement transaction
+    const { source_wallet_id, destination_wallet_id, amount } = payload;
+
+    try {
+      const sourceWallet = await WalletService.getWalletByID(source_wallet_id);
+
+      const destinationWallet =
+        await WalletService.getWalletByID(destination_wallet_id);
+
+      const sourceBalance = Number(sourceWallet.balance);
+
+      const destinationBalance = Number(destinationWallet.balance);
+
+      if (this.hasSufficientBalance(sourceBalance, Number(amount))) {
+        throw new UnprocessableEntityException('Insufficient funds');
+      }
+
+      const newSourceBalance = sourceBalance - Number(amount);
+
+      const newDestinationBalance = destinationBalance + Number(amount);
+
+      await WalletModel.updateWallet(source_wallet_id, {
+        balance: newSourceBalance,
+      });
+
+      await WalletModel.updateWallet(destination_wallet_id, {
+        balance: newDestinationBalance,
+      });
+
+      // create transaction log
+      const transaction = await this.createTransaction({
+        source_wallet_id: sourceWallet.id.toString(),
+        destination_wallet_id: destinationWallet.id.toString(),
+        amount,
+        transaction_type: TransactionType.TRANSFER,
+        status: Status.SUCCESS,
+      });
+
+      return transaction;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static hasSufficientBalance(balance: number, amount: number) {
+    return balance <= ZERO_BALANCE || balance < amount;
+  }
+
+  static async createTransaction(transactionReq: TransactionRequest) {
+    try {
+      const transaction = await TransactionModel.create(transactionReq);
+
+      return transaction;
     } catch (error) {
       throw error;
     }
