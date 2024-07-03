@@ -1,12 +1,18 @@
-import { NotFoundException, UnprocessableEntityException } from '../../shared';
+import { Knex } from 'knex';
 import { PaystackService } from '../paystack';
+import { TransactionModel, TransactionType as Transaction } from '../transactions';
 import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
-
-interface FundWallet {
-  user_id?: string;
-  reference: string;
-}
+import {
+  db,
+  FundWalletRequest,
+  NotFoundException,
+  Status,
+  TransactionRequest,
+  TransactionType,
+  TransferRequest,
+  UnprocessableEntityException,
+} from '../../shared';
 
 class WalletService {
   static async createWallet(payload: Omit<WalletType, 'id'>): Promise<WalletType> {
@@ -80,6 +86,14 @@ class WalletService {
         balance: newBalance,
       });
 
+      await this.createTransaction({
+        source_wallet_id: wallet_id,
+        destination_wallet_id: undefined,
+        amount,
+        transaction_type: TransactionType.DEPOSIT,
+        status: Status.SUCCESS,
+      });
+
       return result;
     } catch (error) {
       throw error;
@@ -100,7 +114,7 @@ class WalletService {
     }
   }
 
-  static async creditWallet(payload: FundWallet) {
+  static async creditWallet(payload: FundWalletRequest) {
     try {
       const response = await PaystackService.verifyPaymentTransaction(
         payload.reference,
@@ -131,6 +145,70 @@ class WalletService {
       await WalletModel.updateWallet('id', {});
 
       return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async transferToWallet(transferReq: TransferRequest): Promise<Transaction> {
+    const { source_wallet_id, destination_wallet_id, amount } = transferReq;
+
+    const trx: Knex.Transaction<any, any[]> = await db.transaction();
+
+    try {
+      const [sourceWallet, destinationWallet] = await Promise.all([
+        WalletService.getWalletByID(source_wallet_id),
+        WalletService.getWalletByID(destination_wallet_id),
+      ]);
+
+      const sourceBalance = Number(sourceWallet.balance);
+
+      const destinationBalance = Number(destinationWallet.balance);
+
+      if (sourceBalance < Number(amount)) {
+        throw new UnprocessableEntityException('Insufficient funds');
+      }
+
+      await Promise.all([
+        trx('wallets')
+          .where({ id: source_wallet_id })
+          .update({ balance: sourceBalance - Number(amount) }),
+
+        trx('wallets')
+          .where({ id: destination_wallet_id })
+          .update({ balance: destinationBalance + Number(amount) }),
+      ]);
+
+      // create transaction log
+      const [transaction_id] = await trx('transactions').insert({
+        source_wallet_id: sourceWallet.id.toString(),
+        destination_wallet_id: destinationWallet.id.toString(),
+        amount,
+        transaction_type: TransactionType.TRANSFER,
+        status: Status.SUCCESS,
+      });
+
+      const transaction: Transaction = await trx('transactions')
+        .where({
+          id: transaction_id,
+        })
+        .first();
+
+      await trx.commit();
+
+      return transaction;
+    } catch (error) {
+      await trx.rollback();
+
+      throw error;
+    }
+  }
+
+  static async createTransaction(transactionReq: TransactionRequest) {
+    try {
+      const transaction = await TransactionModel.create(transactionReq);
+
+      return transaction;
     } catch (error) {
       throw error;
     }

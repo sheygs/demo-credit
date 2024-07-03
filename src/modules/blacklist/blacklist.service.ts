@@ -1,7 +1,7 @@
 import { axiosInstance, config, BlackListedResponse } from '../../shared';
 
 const {
-  app: { blackListApiSecret },
+  app: { adjutorApiSecret },
 } = config;
 
 class BlackListService {
@@ -9,7 +9,7 @@ class BlackListService {
     try {
       const result = await axiosInstance.get<BlackListedResponse>(
         `verification/karma/${email}`,
-        blackListApiSecret,
+        adjutorApiSecret,
       );
 
       return result;
