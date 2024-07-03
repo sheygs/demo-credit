@@ -1,0 +1,3 @@
+ALTER TABLE wallets
+  MODIFY balance DECIMAL(10, 2) DEFAULT 0,
+  MODIFY currency ENUM('NGN', 'USD', 'EUR') DEFAULT 'NGN';

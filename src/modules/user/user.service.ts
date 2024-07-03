@@ -1,22 +1,17 @@
-import { DateType } from '../../shared';
 import { UserModel, UserType } from '../user';
 class UserService {
   static async findUser(email: string) {
     try {
-      return await UserModel.findByEmail(email);
+      const user = await UserModel.findByEmail(email);
+      return user;
     } catch (error) {
       throw error;
     }
   }
 
-  static async create(user: {
-    email: string;
-    password: string;
-    user_name: string;
-    phone_number: string;
-  }): Promise<UserType & DateType> {
+  static async create(user: Omit<UserType, 'id'>): Promise<UserType> {
     try {
-      const newUser = (await UserModel.create(user)) as UserType & DateType;
+      const newUser: UserType = await UserModel.create(user);
       return newUser;
     } catch (error) {
       throw error;

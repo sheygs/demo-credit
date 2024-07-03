@@ -1,17 +1,20 @@
 import { Request as Req, Response as Res, NextFunction as NextFn } from 'express';
 import { CREATED } from 'http-status';
 import { UserType } from '../user';
-import { successResponse, DateType } from '../../shared';
+import { successResponse } from '../../shared';
 import { AuthService } from './auth.service';
+
+type IUserResponse = {
+  user: UserType;
+  token: string;
+};
 
 class AuthController {
   static async signUp(req: Req, res: Res, next: NextFn) {
     try {
       const user = await AuthService.signUp(req);
-      successResponse<{
-        user: UserType & DateType;
-        token: string;
-      }>(res, CREATED, 'user account created', user);
+
+      successResponse<IUserResponse>(res, CREATED, 'account created', user);
     } catch (error) {
       next(error);
     }

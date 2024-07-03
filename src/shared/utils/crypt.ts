@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { config } from '../config';
 
-class UtilService {
+class SecurityUtils {
   private static readonly saltRounds = config.app.saltRounds;
 
   static async hash(value: string): Promise<string> {
@@ -18,4 +18,4 @@ class UtilService {
   }
 }
 
-export { UtilService };
+export { SecurityUtils };

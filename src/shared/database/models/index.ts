@@ -6,29 +6,29 @@ type DateType = {
   updated_at: Date;
 };
 
-type ResponseType<Result> = Promise<Result & DateType>;
+type ResponseType<T> = Promise<T & DateType>;
 
 class Model {
   static tableName: string;
 
   private static get table() {
     if (!this.tableName) {
-      throw new UnprocessableEntityException('Table name required');
+      throw new UnprocessableEntityException('table name required');
     }
 
     return db(this.tableName);
   }
 
-  public static async all<Result>(): Promise<Result[]> {
+  public static async all<T>(): Promise<T[]> {
     return this.table;
   }
 
-  public static async create<Payload, Result>(data: Payload): ResponseType<Result> {
+  public static async create<Payload, T>(data: Payload): ResponseType<T> {
     try {
       const [id] = await this.table.insert(data);
 
       // fetch the inserted user data using the id
-      const record = await this.findById<Result>(id.toString());
+      const record = await this.findById<T>(id.toString());
 
       return record;
     } catch (error) {
@@ -36,23 +36,25 @@ class Model {
     }
   }
 
-  public static async update<Payload, Result>(
+  public static async update<Payload, T>(
     id: string,
     data: Payload,
-  ): ResponseType<Result> {
-    const [result] = await this.table.where({ id }).update(data).returning('*');
-    return result;
+  ): ResponseType<T> {
+    await this.table.where({ id }).update(data);
+
+    // fetch the inserted user data using the id
+    const record = await this.findById<T>(id.toString());
+
+    return record;
   }
 
-  public static async findById<Result>(id: string): ResponseType<Result> {
+  public static async findById<T>(id: string): ResponseType<T> {
     return this.table.where('id', id).first();
   }
 
-  public static async findBy<Payload, Result>(
-    data: Payload,
-  ): ResponseType<Result | null> {
-    return this.table.where(data as string).first();
+  public static async findBy<Payload, T>(data: Payload): ResponseType<T | null> {
+    return this.table.where(data as any).first();
   }
 }
 
-export { Model, DateType };
+export { Model, DateType, ResponseType };
