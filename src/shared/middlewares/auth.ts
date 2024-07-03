@@ -1,5 +1,5 @@
 import { Request as Req, Response as Res, NextFunction as Next } from 'express';
-// import { authService } from '../services';
+import { AuthService, UserModel, UserType } from '../../modules';
 import {
   BadRequestException,
   bearerTokenSchema,
@@ -16,28 +16,24 @@ const verifyAuthToken = async (req: Req, _: Res, next: Next): Promise<void> => {
   }
 
   try {
-    // const [, token] = authorization!.split(' ');
+    const [, token] = authorization!.split(' ');
 
-    // let decoded: any;
+    let decoded: any;
 
     try {
-      // decoded = authService.verifyToken(token);
+      decoded = AuthService.verifyToken(token);
     } catch (error) {
       throw new UnauthorizedException('Invalid authorization token');
     }
 
-    // const userRepo: Repository<User> = dataSource.getRepository(User);
+    const user: UserType = await UserModel.findById(decoded.id);
 
-    //  const user = await new UniversalRepository<User>(userRepo).findOne({
-    //    where: { id: decoded.id },
-    //  });
+    if (!user) {
+      throw new UnauthorizedException('Invalid authorization token');
+    }
 
-    //  if (!user) {
-    //    throw new UnauthorizedException('Invalid authorization token');
-    //  }
-
-    // req.user_id = user.id;
-    // req.user_email = user.email;
+    req.user_id = String(user.id);
+    req.user_email = user.email;
 
     next();
   } catch (error) {

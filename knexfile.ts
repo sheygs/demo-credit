@@ -1,14 +1,14 @@
 import 'dotenv/config';
 import type { Knex } from 'knex';
-import { config, Env, logger, SecurityUtils } from './src/shared';
+import { config, logger } from './src/shared';
 
 const {
   database: { host, port, user, password, name },
 } = config;
 
-const environments: string[] = SecurityUtils.getEnumValues(Env);
+const environments: string[] = ['development', 'test', 'production'];
 
-const connection: Knex.MySqlConnectionConfig = {
+const connection: Knex.MySql2ConnectionConfig = {
   host,
   port: +port,
   user,

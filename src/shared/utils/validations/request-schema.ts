@@ -30,7 +30,23 @@ const walletIDSchema = Joi.object({
 });
 
 const fundWalletSchema = Joi.object({
-  amount: Joi.string().required(),
+  amount: Joi.number().min(1000).required(),
 });
 
-export { signUpSchema, createWalletSchema, walletIDSchema, fundWalletSchema };
+const creditWalletSchema = Joi.object({
+  reference: Joi.string().required(),
+});
+
+const initializePaymentSchema = Joi.object({
+  wallet_id: Joi.string().required(),
+  amount: Joi.number().min(1000).required(),
+});
+
+export {
+  signUpSchema,
+  createWalletSchema,
+  walletIDSchema,
+  fundWalletSchema,
+  initializePaymentSchema,
+  creditWalletSchema,
+};

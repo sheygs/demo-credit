@@ -76,5 +76,11 @@ class AuthService {
       },
     );
   }
+
+  public static verifyToken(token: string) {
+    const { jwtSecret } = config.app;
+
+    return jwt.verify(token, jwtSecret);
+  }
 }
 export { AuthService };

@@ -73,6 +73,7 @@ type Config = {
     jwtExpiresIn: string;
     saltRounds: string;
     blackListApiSecret: string;
+    payStackApiKey: string;
   };
 
   database: {
@@ -119,6 +120,14 @@ export interface Meta {
   balance: number;
 }
 
+interface InitializePaymentReq {
+  amount: string;
+  email: string;
+  currency: string | undefined;
+  wallet_id: string;
+  user_id: string;
+}
+
 export {
   Env,
   Status,
@@ -129,4 +138,5 @@ export {
   BlackListedResponse,
   Config,
   ObjectProps,
+  InitializePaymentReq,
 };

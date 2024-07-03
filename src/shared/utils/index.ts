@@ -5,3 +5,4 @@ export * from './validations';
 export * from './crypt';
 export * from './axios';
 export * from './migration';
+export * from './paystack';

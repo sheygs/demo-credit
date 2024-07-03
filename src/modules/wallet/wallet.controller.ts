@@ -15,6 +15,23 @@ class WalletController {
     }
   }
 
+  static async initializePayment(req: Req, res: Res, next: NextFn) {
+    const { wallet_id, amount } = req.body;
+
+    try {
+      const response = await WalletService.initializePayment(
+        wallet_id,
+        String(amount),
+      );
+
+      successResponse<{
+        authorization_url: string | undefined;
+      }>(res, OK, 'payment initialized', response);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async fundWallet(req: Req, res: Res, next: NextFn) {
     const {
       body: { amount },
@@ -24,6 +41,16 @@ class WalletController {
       const wallet = await WalletService.fundWallet(wallet_id, amount);
 
       successResponse<WalletType>(res, OK, 'wallet funded', wallet);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async depositToWallet(req: Req, res: Res, next: NextFn) {
+    try {
+      const response = await WalletService.creditWallet(req.body);
+
+      successResponse(res, OK, 'wallet funded', response);
     } catch (error) {
       next(error);
     }
