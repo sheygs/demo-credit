@@ -19,4 +19,18 @@ export const bearerTokenSchema: Joi.ObjectSchema<any> = Joi.object()
   })
   .unknown(true);
 
-export { signUpSchema };
+const createWalletSchema = Joi.object({
+  user_id: Joi.string().required(),
+  currency: Joi.string().valid('NGN', 'USD', 'EUR').optional(),
+  balance: Joi.number().default(0).optional(),
+});
+
+const walletIDSchema = Joi.object({
+  wallet_id: Joi.string().required(),
+});
+
+const fundWalletSchema = Joi.object({
+  amount: Joi.string().required(),
+});
+
+export { signUpSchema, createWalletSchema, walletIDSchema, fundWalletSchema };

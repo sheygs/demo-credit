@@ -40,8 +40,12 @@ class Model {
     id: string,
     data: Payload,
   ): ResponseType<T> {
-    const [result] = await this.table.where({ id }).update(data).returning('*');
-    return result;
+    await this.table.where({ id }).update(data);
+
+    // fetch the inserted user data using the id
+    const record = await this.findById<T>(id.toString());
+
+    return record;
   }
 
   public static async findById<T>(id: string): ResponseType<T> {
@@ -49,8 +53,8 @@ class Model {
   }
 
   public static async findBy<Payload, T>(data: Payload): ResponseType<T | null> {
-    return this.table.where(data as string).first();
+    return this.table.where(data as any).first();
   }
 }
 
-export { Model, DateType };
+export { Model, DateType, ResponseType };

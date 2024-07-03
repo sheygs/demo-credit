@@ -1,4 +1,4 @@
-import { Model, DateType } from '../../shared/database';
+import { Model, DateType, ResponseType } from '../../shared/database';
 
 type UserType = {
   id: number;
@@ -6,20 +6,20 @@ type UserType = {
   email: string;
   password: string;
   phone_number: string;
-};
+} & DateType;
 
 class UserModel extends Model {
   static tableName = 'users';
 
   public static async create<Payload, UserType>(
     data: Payload,
-  ): Promise<UserType & DateType> {
+  ): ResponseType<UserType> {
     return super.create<Payload, UserType>({
       ...data,
     });
   }
 
-  public static findByEmail(email: string): Promise<UserType> {
+  public static findByEmail(email: string): ResponseType<UserType | null> {
     return this.findBy<
       {
         email: string;
@@ -29,11 +29,8 @@ class UserModel extends Model {
   }
 
   public static getUsers(): Promise<UserType[]> {
-    return this.all();
+    return this.all<UserType>();
   }
 }
 
 export { UserModel, UserType };
-
-// const users = await db.select('*').from('users');
-// return await db('users');
