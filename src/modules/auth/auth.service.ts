@@ -12,8 +12,6 @@ import {
   Status,
 } from '../../shared';
 
-const { ERROR, SUCCESS } = Status;
-
 class AuthService {
   static async signUp(req: Req) {
     const { email, password, phone_number } = req.body;
@@ -34,12 +32,12 @@ class AuthService {
         phone_number,
       });
 
-      if (status === ERROR) {
+      if (status === Status.ERROR) {
         throw new UnauthorizedException(message);
       }
 
-      if (status === SUCCESS && Object.keys(data).length) {
-        throw new ForbiddenException('this account has been blacklisted');
+      if (status === Status.SUCCESS && Object.keys(data).length) {
+        throw new ForbiddenException('account has been blacklisted');
       }
 
       const hashed = await SecurityUtils.hash(password);

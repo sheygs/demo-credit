@@ -79,4 +79,4 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 
 ### Video Demo
 
-- [Demo Credit API Overview]()
+- [Demo Credit API Overview](https://www.loom.com/share/5eb098d6d12c443b98cda897d28d7db5?sid=c7230024-43b7-49f2-b7f3-05bac29ceec6)
