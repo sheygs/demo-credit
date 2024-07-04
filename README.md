@@ -40,8 +40,8 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 - [Postman](https://www.postman.com/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-- Get Paystack API key from [Paystack API](https://paystack.com/gh/developers?q=/developers)
-- Get Ajutor API Secret key from [Adjutor API Key](https://app.adjutor.io/signup?source=adjutor-api-documentation)
+- Create an Account and get Paystack API key from [Paystack API](https://paystack.com/gh/developers?q=/developers)
+- Create an Account and get Ajutor API Secret key from [Adjutor API Key](https://app.adjutor.io/signup?source=adjutor-api-documentation)
 
 ### Installation 📦
 
