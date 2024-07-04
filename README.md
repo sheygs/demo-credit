@@ -10,6 +10,10 @@ Demo Credit is a mobile lending app that includes wallet functionality. Borrower
 
 Overall, the project is designed to be scalable, maintainable and extensible. The use of a modular monolithic architecture, where all key features are modularized. This can easily spin off to a micro-service that easily promotes code organization and separation of concerns.
 
+### E-R Diagram
+
+![E-R Diagram](./demo-credit-E-R-diagram.png)
+
 ### Technical Requirement
 
 - A user can create an account
