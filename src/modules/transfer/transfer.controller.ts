@@ -13,6 +13,16 @@ class TransferController {
       next(error);
     }
   }
+
+  static async createWithdrawal(req: Req, res: Res, next: NextFn) {
+    try {
+      const response = await WalletService.disburseToExternalAccount(req.body);
+
+      successResponse(res, OK, 'withdrawal successful', response);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export { TransferController };

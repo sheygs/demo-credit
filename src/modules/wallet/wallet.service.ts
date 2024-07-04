@@ -5,6 +5,7 @@ import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
 import {
   db,
+  DisbursementRequest,
   FundWalletRequest,
   NotFoundException,
   Status,
@@ -115,7 +116,6 @@ class WalletService {
   }
 
   static async creditWallet(fundWallet: FundWalletRequest) {
-    // TODO: change `source_wallet_id` to NOT NULL in entity model
     const { reference } = fundWallet;
 
     try {
@@ -230,9 +230,44 @@ class WalletService {
     }
   }
 
-  static async disburseToExternalAccount() {
+  static async disburseToExternalAccount(disbursementReq: DisbursementRequest) {
+    const { wallet_id, amount } = disbursementReq;
+
+    const trx: Knex.Transaction<any, any[]> = await db.transaction();
+
     try {
-    } catch (error) {
+      const wallet = await WalletService.getWalletByID(wallet_id);
+
+      if (Number(wallet.balance) < Number(amount)) {
+        trx.rollback();
+        throw new UnprocessableEntityException('Insufficient funds');
+      }
+
+      const newBalance = Number(wallet.balance) - Number(amount);
+
+      const [, transaction_id] = await Promise.all([
+        trx('wallets').where({ id: wallet_id }).update({ balance: newBalance }),
+
+        trx('transactions').insert({
+          source_wallet_id: wallet.id,
+          destination_wallet_id: null,
+          amount,
+          transaction_type: TransactionType.WITHDRAWAL,
+          status: Status.SUCCESS,
+        }),
+      ]);
+
+      const transaction: Transaction = await trx('transactions')
+        .where({
+          id: transaction_id,
+        })
+        .first();
+
+      await trx.commit();
+
+      return transaction;
+    } catch (error: unknown) {
+      trx.rollback();
       throw error;
     }
   }

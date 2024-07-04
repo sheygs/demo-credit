@@ -51,8 +51,9 @@ const transferSchema = Joi.object({
 const withdrawalSchema = Joi.object({
   wallet_id: Joi.string().required(),
   amount: Joi.number().min(1000).required(),
-  account_number: Joi.string().required(),
-  bank_code: Joi.string().default('058').optional(),
+  account_number: Joi.string().optional(),
+  // bank_code: Joi.string().default('058').optional(),
+  bank_code: Joi.string().optional(),
 });
 
 export {

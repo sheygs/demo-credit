@@ -4,7 +4,7 @@ import {
 } from 'paystack-sdk/dist/transaction/interface';
 import { BadRequest } from 'paystack-sdk/dist/interface';
 import {
-  InitializePaymentReq,
+  InitializePaymentRequest,
   paystack,
   UnprocessableEntityException,
 } from '../../shared';
@@ -14,7 +14,7 @@ interface TransferRecipientReq {
   name: string;
   account_number: string;
   bank_code: string; // 058
-  currency: string; //NGN
+  currency: string; // NGN
 }
 
 interface InitiateTransferReq {
@@ -26,7 +26,7 @@ interface InitiateTransferReq {
 
 class PaystackService {
   static async initializePayment(
-    initializePaymentReq: InitializePaymentReq,
+    initializePaymentReq: InitializePaymentRequest,
   ): Promise<{
     authorization_url: string | undefined;
   }> {
