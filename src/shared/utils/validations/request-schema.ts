@@ -3,8 +3,6 @@ import { BadRequestException } from '../exceptions';
 
 const PASSWORD_REGEX = /^[a-zA-Z0-9]{3,30}$/;
 
-const ZERO_BALANCE = 0;
-
 const signUpSchema = Joi.object({
   user_name: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -50,6 +48,13 @@ const transferSchema = Joi.object({
   amount: Joi.number().min(1000).required(),
 });
 
+const withdrawalSchema = Joi.object({
+  wallet_id: Joi.string().required(),
+  amount: Joi.number().min(1000).required(),
+  account_number: Joi.string().required(),
+  bank_code: Joi.string().default('058').optional(),
+});
+
 export {
   signUpSchema,
   createWalletSchema,
@@ -58,5 +63,5 @@ export {
   initializePaymentSchema,
   creditWalletSchema,
   transferSchema,
-  ZERO_BALANCE,
+  withdrawalSchema,
 };

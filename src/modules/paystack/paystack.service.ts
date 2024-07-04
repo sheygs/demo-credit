@@ -9,6 +9,21 @@ import {
   UnprocessableEntityException,
 } from '../../shared';
 
+interface TransferRecipientReq {
+  type: string; // nuban
+  name: string;
+  account_number: string;
+  bank_code: string; // 058
+  currency: string; //NGN
+}
+
+interface InitiateTransferReq {
+  source: string;
+  amount: number;
+  recipient: string | undefined;
+  reason?: string;
+}
+
 class PaystackService {
   static async initializePayment(
     initializePaymentReq: InitializePaymentReq,
@@ -53,6 +68,41 @@ class PaystackService {
       }
 
       return transaction;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async createTransferRecipient(transferRecipient: TransferRecipientReq) {
+    const { type, name, account_number, bank_code, currency } = transferRecipient;
+
+    try {
+      const recipient = await paystack.recipient.create({
+        type,
+        name,
+        account_number,
+        bank_code,
+        currency,
+      });
+
+      return recipient;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async initiateTransfer(initiateTransfer: InitiateTransferReq) {
+    const { source, amount, recipient, reason } = initiateTransfer;
+
+    try {
+      const transfer = await paystack.transfer.initiate({
+        source,
+        amount,
+        recipient: recipient ?? '',
+        reason,
+      });
+
+      return transfer;
     } catch (error) {
       throw error;
     }

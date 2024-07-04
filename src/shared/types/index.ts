@@ -147,10 +147,10 @@ interface TransferRequest {
 
 interface TransactionRequest {
   source_wallet_id: string;
-  destination_wallet_id: string | undefined;
+  destination_wallet_id: string | null;
   amount: string;
   transaction_type: string;
-  status: string;
+  status: string | null;
 }
 
 export {

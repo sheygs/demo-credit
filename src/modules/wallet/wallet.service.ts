@@ -88,7 +88,7 @@ class WalletService {
 
       await this.createTransaction({
         source_wallet_id: wallet_id,
-        destination_wallet_id: undefined,
+        destination_wallet_id: null,
         amount,
         transaction_type: TransactionType.DEPOSIT,
         status: Status.SUCCESS,
@@ -114,21 +114,51 @@ class WalletService {
     }
   }
 
-  static async creditWallet(payload: FundWalletRequest) {
-    try {
-      const response = await PaystackService.verifyPaymentTransaction(
-        payload.reference,
-      );
+  static async creditWallet(fundWallet: FundWalletRequest) {
+    // TODO: change `source_wallet_id` to NOT NULL in entity model
+    const { reference } = fundWallet;
 
-      if (response.data?.status !== 'success') {
+    try {
+      const response = await PaystackService.verifyPaymentTransaction(reference);
+
+      if (response.data?.status !== Status.SUCCESS) {
         // log error transaction
+
+        await this.createTransaction({
+          amount: response.data?.metadata.amount as string,
+          destination_wallet_id: null,
+          source_wallet_id: response.data?.metadata.wallet_id as string,
+          status:
+            response.data?.status !== Status.SUCCESS
+              ? Status.FAILURE
+              : Status.SUCCESS,
+          transaction_type: TransactionType.DEPOSIT,
+        });
 
         throw new UnprocessableEntityException(
           response.data?.gateway_response || 'payment verification failed',
         );
       }
 
-      await WalletModel.updateWallet('id', {});
+      const { user_id, amount } = response.data.metadata;
+
+      const wallet: WalletType = await WalletModel.findByUserId(user_id as string);
+
+      await Promise.all([
+        // log success transaction
+
+        this.createTransaction({
+          amount: response.data?.metadata.amount as string,
+          destination_wallet_id: null,
+          source_wallet_id: response.data?.metadata.wallet_id as string,
+          status: Status.SUCCESS,
+          transaction_type: TransactionType.DEPOSIT,
+        }),
+
+        await WalletModel.updateWallet('id', {
+          balance: Number(wallet.balance) + Number(amount),
+        }),
+      ]);
 
       return response;
     } catch (error) {
@@ -195,6 +225,13 @@ class WalletService {
       const transaction = await TransactionModel.create(transactionReq);
 
       return transaction;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async disburseToExternalAccount() {
+    try {
     } catch (error) {
       throw error;
     }
