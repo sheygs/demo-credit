@@ -6,6 +6,10 @@
 
 Demo Credit is a mobile lending app that includes wallet functionality. Borrowers use the wallet to receive granted loans and make repayments.
 
+### High Level Overview
+
+- [Demo Credit Docs](https://www.notion.so/Demo-Credit-acb077a3a22141e7b3dc5e01c92b5158)
+
 ### Project Architecture
 
 Overall, the project is designed to be scalable, maintainable and extensible. The use of a modular monolithic architecture, where all key features are modularized. This can easily spin off to a micro-service that easily promotes code organization and separation of concerns.
@@ -46,7 +50,9 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 
 - Rename`.env.dev` to `.env` and populate variables with `****`
 
-### Seeding
+### Migration
+
+- Run `npm run migrate` to create tables.
 
 ### Using Docker (Recommended)
 
