@@ -1,1201 +1,1099 @@
 {
-	"info": {
-		"_postman_id": "cc53b734-264f-483d-8508-3a391d943400",
-		"name": "Demo Credit",
-		"description": "Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12241279"
-	},
-	"item": [
-		{
-			"name": "Base Endpoint",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
-					]
-				},
-				"description": "This is the base endpoint for Demo Credit. It is denoted as the `base_url`"
-			},
-			"response": [
-				{
-					"name": "Base Endpoint",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8281",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8281"
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "345"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"159-jGLz7fxa39++cFTGTRaEGdoyyOA\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:26:01 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"okay\",\n    \"data\": {\n        \"name\": \"demo-credit\",\n        \"version\": \"0.0.1\",\n        \"description\": \"Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.\",\n        \"author\": \"Olusegun Ekoh (sheygs)\",\n        \"baseUrl\": \"https://adjutor.lendsqr.com/v2\",\n        \"port\": \"8281\",\n        \"environment\": \"development\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Sign Up",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"user_name\": \"bisiade\",\n    \"email\": \"bisi@gmail.com\",\n    \"password\": \"BisiA135\",\n    \"phone_number\": \"+2348056789312\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/auth/signup",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"auth",
-						"signup"
-					]
-				},
-				"description": "`{{base_url}}/api/v1/auth/signup`\n\nThis endpoint creates a user entry in the data store.  \nReturns a `status_code` of `201`"
-			},
-			"response": [
-				{
-					"name": "Sign Up",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"user_name\": \"john\",\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"JohnDoe10\",\n    \"phone_number\": \"+2348056789312\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/auth/signup",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "456"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"1c8-MTvoQHoNUf9uKY0iHMo1qIiLkvs\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:29:19 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"account created\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"user_name\": \"john\",\n            \"email\": \"john.doe@gmail.com\",\n            \"phone_number\": \"+2348056789312\",\n            \"created_at\": \"2024-07-04T10:29:19.000Z\",\n            \"updated_at\": \"2024-07-04T10:29:19.000Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiam9obiIsImVtYWlsIjoiam9obi5kb2VAZ21haWwuY29tIiwiaWF0IjoxNzIwMDkyNTU5LCJleHAiOjE3MjAxNzg5NTl9.KdkPWArfqOUUo634xUHqzclzAEDkaEIOFT1XzKGDNFw\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Fund Account",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"amount\": \"1500\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/wallets/:wallet_id/deposit",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"wallets",
-						":wallet_id",
-						"deposit"
-					],
-					"variable": [
-						{
-							"key": "wallet_id",
-							"value": "1"
-						}
-					]
-				},
-				"description": "Endpoint: `{{base_url}}/api/v1/wallets/:wallet_id/deposit`  \nThis endpoint funds a wallet account.\n\nIt takes the `wallet_id` to be funded and the `amount`\n\nReturns a `200` `OK` response"
-			},
-			"response": [
-				{
-					"name": "Fund Account",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": \"1500\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/wallets/:wallet_id/deposit",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"wallets",
-								":wallet_id",
-								"deposit"
-							],
-							"variable": [
-								{
-									"key": "wallet_id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "202"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"ca-WXpDlpgRu0WHd3W/kNMn1sK2C+M\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:31:12 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"wallet funded\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"currency\": \"NGN\",\n        \"balance\": \"1500.00\",\n        \"created_at\": \"2024-07-04T10:30:16.000Z\",\n        \"updated_at\": \"2024-07-04T10:31:12.000Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Create Wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"user_id\":\"1\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/wallets",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"wallets"
-					]
-				},
-				"description": "`Endpoint: {{base_url}}/api/v1/wallets`\n\nThis endpoint takes a user account ID `user_id` in `req.body`to create a wallet entry.  \nIt returns a `201` `CREATED` response."
-			},
-			"response": [
-				{
-					"name": "Create Wallet",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"user_id\":\"1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/wallets",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"wallets"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "200"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"c8-JJPUWIqzRv9PxYbAAzRUn1jKWo4\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:30:16 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"wallet created\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"currency\": \"NGN\",\n        \"balance\": \"0.00\",\n        \"created_at\": \"2024-07-04T10:30:16.000Z\",\n        \"updated_at\": \"2024-07-04T10:30:16.000Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Initialize Payment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"wallet_id\":\"1\",\n    \"amount\":1000\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/wallets/initialize-payment",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"wallets",
-						"initialize-payment"
-					]
-				},
-				"description": "Endpoint: `{{base_url}}/api/v1/wallets/initialize-payment`\n\nThis endpoint is used to fund a wallet through a Paystack payment gateway.  \nIt takes a `wallet_id` and `amount` in the body of the request to return an `authorization_url`\n\nIt returns a `200` `OK` response"
-			},
-			"response": [
-				{
-					"name": "Initialize Payment",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"wallet_id\":\"1\",\n    \"amount\":1000\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/wallets/initialize-payment",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"wallets",
-								"initialize-payment"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "140"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"8c-kXc0X7PYZhzRAxsJl2hB/nLH2xE\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:32:03 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"payment initialized\",\n    \"data\": {\n        \"authorization_url\": \"https://checkout.paystack.com/3lq2muovwihj371\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Credit Wallet [With Payment Gateway]",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"reference\":\"o3xq5mq9kj\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/wallets/deposit",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"wallets",
-						"deposit"
-					]
-				},
-				"description": "Endpoint: `{{base_url}}/api/v1/wallets/deposit`\n\nThis endpoint takes in `reference` in the request body to fund the wallet account\n\nIt returns a `200` `OK` response"
-			},
-			"response": [
-				{
-					"name": "Credit Wallet [With Payment Gateway]",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"reference\":\"1itqz14fxa\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/wallets/deposit",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"wallets",
-								"deposit"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"671-Uoc7+T9mJKcIGkRibVS/9R5dkBw\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:47:00 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"wallet funded\",\n    \"data\": {\n        \"status\": true,\n        \"message\": \"Verification successful\",\n        \"data\": {\n            \"id\": 3946879891,\n            \"domain\": \"test\",\n            \"status\": \"success\",\n            \"reference\": \"1itqz14fxa\",\n            \"receipt_number\": null,\n            \"amount\": 1000,\n            \"message\": null,\n            \"gateway_response\": \"Successful\",\n            \"paid_at\": \"2024-07-04T11:32:45.000Z\",\n            \"created_at\": \"2024-07-04T11:32:03.000Z\",\n            \"channel\": \"card\",\n            \"currency\": \"NGN\",\n            \"ip_address\": \"102.219.153.212\",\n            \"metadata\": {\n                \"amount\": \"1000\",\n                \"wallet_id\": \"1\",\n                \"user_id\": \"1\",\n                \"currency\": \"NGN\"\n            },\n            \"log\": {\n                \"start_time\": 1720092744,\n                \"time_spent\": 23,\n                \"attempts\": 1,\n                \"errors\": 0,\n                \"success\": true,\n                \"mobile\": false,\n                \"input\": [],\n                \"history\": [\n                    {\n                        \"type\": \"action\",\n                        \"message\": \"Attempted to pay with card\",\n                        \"time\": 21\n                    },\n                    {\n                        \"type\": \"success\",\n                        \"message\": \"Successfully paid with card\",\n                        \"time\": 23\n                    }\n                ]\n            },\n            \"fees\": 15,\n            \"fees_split\": null,\n            \"authorization\": {\n                \"authorization_code\": \"AUTH_776l0v47rx\",\n                \"bin\": \"408408\",\n                \"last4\": \"4081\",\n                \"exp_month\": \"12\",\n                \"exp_year\": \"2030\",\n                \"channel\": \"card\",\n                \"card_type\": \"visa \",\n                \"bank\": \"TEST BANK\",\n                \"country_code\": \"NG\",\n                \"brand\": \"visa\",\n                \"reusable\": true,\n                \"signature\": \"SIG_yypN86wTD58Y0eNNc17N\",\n                \"account_name\": null,\n                \"receiver_bank_account_number\": null,\n                \"receiver_bank\": null\n            },\n            \"customer\": {\n                \"id\": 173576349,\n                \"first_name\": null,\n                \"last_name\": null,\n                \"email\": \"john.doe@gmail.com\",\n                \"customer_code\": \"CUS_n1vf1e83yvpfc55\",\n                \"phone\": null,\n                \"metadata\": null,\n                \"risk_action\": \"default\",\n                \"international_format_phone\": null\n            },\n            \"plan\": null,\n            \"split\": {},\n            \"order_id\": null,\n            \"paidAt\": \"2024-07-04T11:32:45.000Z\",\n            \"createdAt\": \"2024-07-04T11:32:03.000Z\",\n            \"requested_amount\": 1000,\n            \"pos_transaction_data\": null,\n            \"source\": null,\n            \"fees_breakdown\": null,\n            \"connect\": null,\n            \"transaction_date\": \"2024-07-04T11:32:03.000Z\",\n            \"plan_object\": {},\n            \"subaccount\": {}\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Transfer to Wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"source_wallet_id\": \"4\",\n    \"destination_wallet_id\": \"5\",\n    \"amount\": \"1000\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/transfers",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"transfers"
-					]
-				},
-				"description": "Endpoint: `http://localhost:8281/api/v1/transfers`\n\nThis endpoint transfers funds from a source wallet to a destination wallet\n\nIt accepts `source_wallet_id`, `destination_wallet_id` and `amount` as request bodies.\n\nIt returns a `200` `OK` response."
-			},
-			"response": [
-				{
-					"name": "Transfer to Wallet",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"source_wallet_id\": \"1\",\n    \"destination_wallet_id\": \"2\",\n    \"amount\": \"1000\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/transfers",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"transfers"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "274"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"112-GGbIcGTp5fXRDVo4bqzd5WPIi34\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:49:00 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"transfer successful\",\n    \"data\": {\n        \"id\": 9,\n        \"source_wallet_id\": 1,\n        \"destination_wallet_id\": 2,\n        \"amount\": \"1000.00\",\n        \"transaction_type\": \"transfer\",\n        \"status\": \"success\",\n        \"created_at\": \"2024-07-04T10:49:00.000Z\",\n        \"updated_at\": \"2024-07-04T10:49:00.000Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Disbursement to External Account",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"wallet_id\": \"1\",\n    \"amount\": \"1000\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/api/v1/withdrawals",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"withdrawals"
-					]
-				},
-				"description": "Endpoint: `http://localhost:8281/api/v1/withdrawals`\n\nThis endpoint transfers funds from a source wallet to a destination wallet\n\nIt accepts `wallet_id` and `amount` as request bodies.\n\nIt returns a `200` `OK` response."
-			},
-			"response": [
-				{
-					"name": "Disbursement to External Account",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"wallet_id\": \"1\",\n    \"amount\": \"1000\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/api/v1/withdrawals",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"withdrawals"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "Cross-Origin-Opener-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Cross-Origin-Resource-Policy",
-							"value": "same-origin"
-						},
-						{
-							"key": "Origin-Agent-Cluster",
-							"value": "?1"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "282"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"11a-G626y6/JjYIeqhj9JMOWNQ4UfN4\""
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 04 Jul 2024 11:49:33 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"withdrawal successful\",\n    \"data\": {\n        \"id\": 10,\n        \"source_wallet_id\": 1,\n        \"destination_wallet_id\": null,\n        \"amount\": \"1000.00\",\n        \"transaction_type\": \"withdrawal\",\n        \"status\": \"success\",\n        \"created_at\": \"2024-07-04T10:49:33.000Z\",\n        \"updated_at\": \"2024-07-04T10:49:33.000Z\"\n    }\n}"
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{token}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "cc53b734-264f-483d-8508-3a391d943400",
+    "name": "Demo Credit",
+    "description": "Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12241279"
+  },
+  "item": [
+    {
+      "name": "Base Endpoint",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}",
+          "host": ["{{base_url}}"]
+        },
+        "description": "This is the base endpoint for Demo Credit. It is denoted as the `base_url`"
+      },
+      "response": [
+        {
+          "name": "Base Endpoint",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8281",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8281"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "345"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"159-jGLz7fxa39++cFTGTRaEGdoyyOA\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:26:01 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"okay\",\n    \"data\": {\n        \"name\": \"demo-credit\",\n        \"version\": \"0.0.1\",\n        \"description\": \"Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.\",\n        \"author\": \"Olusegun Ekoh (sheygs)\",\n        \"baseUrl\": \"https://adjutor.lendsqr.com/v2\",\n        \"port\": \"8281\",\n        \"environment\": \"development\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Sign Up",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"user_name\": \"bisiade\",\n    \"email\": \"bisi@gmail.com\",\n    \"password\": \"BisiA135\",\n    \"phone_number\": \"+2348056789312\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/auth/signup",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "auth", "signup"]
+        },
+        "description": "`{{base_url}}/api/v1/auth/signup`\n\nThis endpoint creates a user entry in the data store.  \nReturns a `status_code` of `201`"
+      },
+      "response": [
+        {
+          "name": "Sign Up",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_name\": \"john\",\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"JohnDoe10\",\n    \"phone_number\": \"+2348056789312\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "signup"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "456"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1c8-MTvoQHoNUf9uKY0iHMo1qIiLkvs\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:29:19 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"account created\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"user_name\": \"john\",\n            \"email\": \"john.doe@gmail.com\",\n            \"phone_number\": \"+2348056789312\",\n            \"created_at\": \"2024-07-04T10:29:19.000Z\",\n            \"updated_at\": \"2024-07-04T10:29:19.000Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiam9obiIsImVtYWlsIjoiam9obi5kb2VAZ21haWwuY29tIiwiaWF0IjoxNzIwMDkyNTU5LCJleHAiOjE3MjAxNzg5NTl9.KdkPWArfqOUUo634xUHqzclzAEDkaEIOFT1XzKGDNFw\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fund Account",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"amount\": \"1500\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/wallets/:wallet_id/deposit",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "wallets", ":wallet_id", "deposit"],
+          "variable": [
+            {
+              "key": "wallet_id",
+              "value": "1"
+            }
+          ]
+        },
+        "description": "Endpoint: `{{base_url}}/api/v1/wallets/:wallet_id/deposit`  \nThis endpoint funds a wallet account.\n\nIt takes the `wallet_id` to be funded and the `amount`\n\nReturns a `200` `OK` response"
+      },
+      "response": [
+        {
+          "name": "Fund Account",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": \"1500\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/wallets/:wallet_id/deposit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "wallets", ":wallet_id", "deposit"],
+              "variable": [
+                {
+                  "key": "wallet_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "202"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"ca-WXpDlpgRu0WHd3W/kNMn1sK2C+M\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:31:12 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"wallet funded\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"currency\": \"NGN\",\n        \"balance\": \"1500.00\",\n        \"created_at\": \"2024-07-04T10:30:16.000Z\",\n        \"updated_at\": \"2024-07-04T10:31:12.000Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Wallet",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"user_id\":\"1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/wallets",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "wallets"]
+        },
+        "description": "`Endpoint: {{base_url}}/api/v1/wallets`\n\nThis endpoint takes a user account ID `user_id` in `req.body`to create a wallet entry.  \nIt returns a `201` `CREATED` response."
+      },
+      "response": [
+        {
+          "name": "Create Wallet",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\":\"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/wallets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "wallets"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "200"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"c8-JJPUWIqzRv9PxYbAAzRUn1jKWo4\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:30:16 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 201,\n    \"status\": \"success\",\n    \"message\": \"wallet created\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"currency\": \"NGN\",\n        \"balance\": \"0.00\",\n        \"created_at\": \"2024-07-04T10:30:16.000Z\",\n        \"updated_at\": \"2024-07-04T10:30:16.000Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Initialize Payment",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"wallet_id\":\"1\",\n    \"amount\":1000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/wallets/initialize-payment",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "wallets", "initialize-payment"]
+        },
+        "description": "Endpoint: `{{base_url}}/api/v1/wallets/initialize-payment`\n\nThis endpoint is used to fund a wallet through a Paystack payment gateway.  \nIt takes a `wallet_id` and `amount` in the body of the request to return an `authorization_url`\n\nIt returns a `200` `OK` response"
+      },
+      "response": [
+        {
+          "name": "Initialize Payment",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"wallet_id\":\"1\",\n    \"amount\":1000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/wallets/initialize-payment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "wallets", "initialize-payment"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "140"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"8c-kXc0X7PYZhzRAxsJl2hB/nLH2xE\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:32:03 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"payment initialized\",\n    \"data\": {\n        \"authorization_url\": \"https://checkout.paystack.com/3lq2muovwihj371\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Credit Wallet [With Payment Gateway]",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"reference\":\"o3xq5mq9kj\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/wallets/deposit",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "wallets", "deposit"]
+        },
+        "description": "Endpoint: `{{base_url}}/api/v1/wallets/deposit`\n\nThis endpoint takes in `reference` in the request body to fund the wallet account\n\nIt returns a `200` `OK` response"
+      },
+      "response": [
+        {
+          "name": "Credit Wallet [With Payment Gateway]",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"reference\":\"1itqz14fxa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/wallets/deposit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "wallets", "deposit"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"671-Uoc7+T9mJKcIGkRibVS/9R5dkBw\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:47:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"wallet funded\",\n    \"data\": {\n        \"status\": true,\n        \"message\": \"Verification successful\",\n        \"data\": {\n            \"id\": 3946879891,\n            \"domain\": \"test\",\n            \"status\": \"success\",\n            \"reference\": \"1itqz14fxa\",\n            \"receipt_number\": null,\n            \"amount\": 1000,\n            \"message\": null,\n            \"gateway_response\": \"Successful\",\n            \"paid_at\": \"2024-07-04T11:32:45.000Z\",\n            \"created_at\": \"2024-07-04T11:32:03.000Z\",\n            \"channel\": \"card\",\n            \"currency\": \"NGN\",\n            \"ip_address\": \"102.219.153.212\",\n            \"metadata\": {\n                \"amount\": \"1000\",\n                \"wallet_id\": \"1\",\n                \"user_id\": \"1\",\n                \"currency\": \"NGN\"\n            },\n            \"log\": {\n                \"start_time\": 1720092744,\n                \"time_spent\": 23,\n                \"attempts\": 1,\n                \"errors\": 0,\n                \"success\": true,\n                \"mobile\": false,\n                \"input\": [],\n                \"history\": [\n                    {\n                        \"type\": \"action\",\n                        \"message\": \"Attempted to pay with card\",\n                        \"time\": 21\n                    },\n                    {\n                        \"type\": \"success\",\n                        \"message\": \"Successfully paid with card\",\n                        \"time\": 23\n                    }\n                ]\n            },\n            \"fees\": 15,\n            \"fees_split\": null,\n            \"authorization\": {\n                \"authorization_code\": \"AUTH_776l0v47rx\",\n                \"bin\": \"408408\",\n                \"last4\": \"4081\",\n                \"exp_month\": \"12\",\n                \"exp_year\": \"2030\",\n                \"channel\": \"card\",\n                \"card_type\": \"visa \",\n                \"bank\": \"TEST BANK\",\n                \"country_code\": \"NG\",\n                \"brand\": \"visa\",\n                \"reusable\": true,\n                \"signature\": \"SIG_yypN86wTD58Y0eNNc17N\",\n                \"account_name\": null,\n                \"receiver_bank_account_number\": null,\n                \"receiver_bank\": null\n            },\n            \"customer\": {\n                \"id\": 173576349,\n                \"first_name\": null,\n                \"last_name\": null,\n                \"email\": \"john.doe@gmail.com\",\n                \"customer_code\": \"CUS_n1vf1e83yvpfc55\",\n                \"phone\": null,\n                \"metadata\": null,\n                \"risk_action\": \"default\",\n                \"international_format_phone\": null\n            },\n            \"plan\": null,\n            \"split\": {},\n            \"order_id\": null,\n            \"paidAt\": \"2024-07-04T11:32:45.000Z\",\n            \"createdAt\": \"2024-07-04T11:32:03.000Z\",\n            \"requested_amount\": 1000,\n            \"pos_transaction_data\": null,\n            \"source\": null,\n            \"fees_breakdown\": null,\n            \"connect\": null,\n            \"transaction_date\": \"2024-07-04T11:32:03.000Z\",\n            \"plan_object\": {},\n            \"subaccount\": {}\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Transfer to Wallet",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"source_wallet_id\": \"4\",\n    \"destination_wallet_id\": \"5\",\n    \"amount\": \"1000\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/transfers",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "transfers"]
+        },
+        "description": "Endpoint: `http://localhost:8281/api/v1/transfers`\n\nThis endpoint transfers funds from a source wallet to a destination wallet\n\nIt accepts `source_wallet_id`, `destination_wallet_id` and `amount` as request bodies.\n\nIt returns a `200` `OK` response."
+      },
+      "response": [
+        {
+          "name": "Transfer to Wallet",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"source_wallet_id\": \"1\",\n    \"destination_wallet_id\": \"2\",\n    \"amount\": \"1000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/transfers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "transfers"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "274"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"112-GGbIcGTp5fXRDVo4bqzd5WPIi34\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:49:00 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"transfer successful\",\n    \"data\": {\n        \"id\": 9,\n        \"source_wallet_id\": 1,\n        \"destination_wallet_id\": 2,\n        \"amount\": \"1000.00\",\n        \"transaction_type\": \"transfer\",\n        \"status\": \"success\",\n        \"created_at\": \"2024-07-04T10:49:00.000Z\",\n        \"updated_at\": \"2024-07-04T10:49:00.000Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Disbursement to External Account",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"wallet_id\": \"1\",\n    \"amount\": \"1000\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/withdrawals",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "withdrawals"]
+        },
+        "description": "Endpoint: `http://localhost:8281/api/v1/withdrawals`\n\nThis endpoint transfers funds from a source wallet to a destination wallet\n\nIt accepts `wallet_id` and `amount` as request bodies.\n\nIt returns a `200` `OK` response."
+      },
+      "response": [
+        {
+          "name": "Disbursement to External Account",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"wallet_id\": \"1\",\n    \"amount\": \"1000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/withdrawals",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "withdrawals"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Resource-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Origin-Agent-Cluster",
+              "value": "?1"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15552000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "off"
+            },
+            {
+              "key": "X-Download-Options",
+              "value": "noopen"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Permitted-Cross-Domain-Policies",
+              "value": "none"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "282"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"11a-G626y6/JjYIeqhj9JMOWNQ4UfN4\""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 11:49:33 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": 200,\n    \"status\": \"success\",\n    \"message\": \"withdrawal successful\",\n    \"data\": {\n        \"id\": 10,\n        \"source_wallet_id\": 1,\n        \"destination_wallet_id\": null,\n        \"amount\": \"1000.00\",\n        \"transaction_type\": \"withdrawal\",\n        \"status\": \"success\",\n        \"created_at\": \"2024-07-04T10:49:33.000Z\",\n        \"updated_at\": \"2024-07-04T10:49:33.000Z\"\n    }\n}"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ]
 }
