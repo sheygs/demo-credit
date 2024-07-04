@@ -43,7 +43,7 @@ export const config: Config = {
 
     saltRounds: '10',
 
-    adjutorApiSecret: process.env.APP_SECRET_KEY ?? 'mySecret',
+    adjutorApiSecret: process.env.ADJUTOR_SECRET_KEY ?? 'mySecret',
 
     payStackApiKey: process.env.PAYSTACK_API_KEY ?? '',
   },

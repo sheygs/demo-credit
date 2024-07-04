@@ -18,7 +18,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 
 ![E-R Diagram](./demo-credit-E-R-diagram.png)
 
-### Technical Requirement
+### Features
 
 - A user can create an account
 - A user can fund their account
@@ -34,11 +34,14 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 - KnexJS: [KnexJS](https://knexjs.org/)
 - Database: [MySQL](https://www.mysql.com/)
 
-### Setup
+### Setup (Application Requirements)
 
 - [Docker](https://www.docker.com/)
 - [Postman](https://www.postman.com/downloads/)
 - [Git](https://git-scm.com/downloads)
+
+- Get Paystack API key from [Paystack API](https://paystack.com/gh/developers?q=/developers)
+- Get Ajutor API Secret key from [Adjutor API Key](https://app.adjutor.io/signup?source=adjutor-api-documentation)
 
 ### Installation 📦
 
