@@ -1,4 +1,8 @@
-import { Request as Req, Response as Res, NextFunction as NextFn } from 'express';
+import {
+  Request as Req,
+  Response as Res,
+  NextFunction as NextFn,
+} from 'express';
 import { CREATED, OK } from 'http-status';
 import { successResponse } from '../../shared';
 import { WalletService } from './wallet.service';
@@ -19,7 +23,10 @@ class WalletController {
     const { wallet_id, amount } = req.body;
 
     try {
-      const response = await WalletService.initializePayment(wallet_id, String(amount));
+      const response = await WalletService.initializePayment(
+        wallet_id,
+        String(amount),
+      );
 
       successResponse<{
         authorization_url: string | undefined;

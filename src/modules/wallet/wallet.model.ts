@@ -16,7 +16,9 @@ class WalletModel extends Model {
     return super.create<Payload, WalletType>(data);
   }
 
-  public static async findByUserId(user_id: string): ResponseType<WalletType | null> {
+  public static async findByUserId(
+    user_id: string,
+  ): ResponseType<WalletType | null> {
     return this.findBy<
       {
         user_id: string;

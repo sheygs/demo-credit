@@ -25,7 +25,9 @@ process
 server.listen({ port }, (): void => {
   process.stdout.write(`⚙️ Env: ${environment}\n`);
   process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
-  process.stdout.write(`🚀 demo-credit api running on http://${hostname()}:${port}\n`);
+  process.stdout.write(
+    `🚀 demo-credit api running on http://${hostname()}:${port}\n`,
+  );
 });
 
 export { server };

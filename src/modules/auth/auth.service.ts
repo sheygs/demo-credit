@@ -29,7 +29,10 @@ class AuthService {
         status,
         data = {},
         message,
-      } = await BlackListService.verifyCustomer({ email, phone_number });
+      } = await BlackListService.verifyCustomerBlackListStatus({
+        email,
+        phone_number,
+      });
 
       if (status === ERROR) {
         throw new UnauthorizedException(message);

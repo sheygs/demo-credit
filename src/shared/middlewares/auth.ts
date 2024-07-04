@@ -1,6 +1,10 @@
 import { Request as Req, Response as Res, NextFunction as Next } from 'express';
 import { AuthService, UserModel, UserType } from '../../modules';
-import { BadRequestException, bearerTokenSchema, UnauthorizedException } from '../utils';
+import {
+  BadRequestException,
+  bearerTokenSchema,
+  UnauthorizedException,
+} from '../utils';
 
 const verifyAuthToken = async (req: Req, _: Res, next: Next): Promise<void> => {
   const { authorization = '' } = req.headers;

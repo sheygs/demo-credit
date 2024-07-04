@@ -10,8 +10,8 @@ interface UserIdentity {
 }
 
 class BlackListService {
-  static async verifyCustomer(userIdentityReq: UserIdentity) {
-    const { email, phone_number } = userIdentityReq;
+  static async verifyCustomerBlackListStatus(payload: UserIdentity) {
+    const { email, phone_number } = payload;
 
     const identity = email ? email : phone_number;
 

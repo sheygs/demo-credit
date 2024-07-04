@@ -1,6 +1,9 @@
 import { Knex } from 'knex';
 import { PaystackService } from '../paystack';
-import { TransactionModel, TransactionType as Transaction } from '../transactions';
+import {
+  TransactionModel,
+  TransactionType as Transaction,
+} from '../transactions';
 import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
 import {
@@ -16,7 +19,9 @@ import {
 } from '../../shared';
 
 class WalletService {
-  static async createWallet(payload: Omit<WalletType, 'id'>): Promise<WalletType> {
+  static async createWallet(
+    payload: Omit<WalletType, 'id'>,
+  ): Promise<WalletType> {
     const { user_id } = payload;
 
     try {
@@ -63,7 +68,8 @@ class WalletService {
 
   static async verifyTransactionPayment(reference: string) {
     try {
-      const response = await PaystackService.verifyPaymentTransaction(reference);
+      const response =
+        await PaystackService.verifyPaymentTransaction(reference);
 
       return response;
     } catch (error) {
@@ -71,7 +77,10 @@ class WalletService {
     }
   }
 
-  static async fundWallet(wallet_id: string, amount: string): Promise<WalletType> {
+  static async fundWallet(
+    wallet_id: string,
+    amount: string,
+  ): Promise<WalletType> {
     try {
       const wallet = await WalletModel.findBy<{ id: string }, WalletType>({
         id: wallet_id,
@@ -121,7 +130,8 @@ class WalletService {
     const trx: Knex.Transaction<any, any[]> = await db.transaction();
 
     try {
-      const response = await PaystackService.verifyPaymentTransaction(reference);
+      const response =
+        await PaystackService.verifyPaymentTransaction(reference);
 
       if (response.data?.status !== Status.SUCCESS) {
         // log error transaction
@@ -130,7 +140,9 @@ class WalletService {
           destination_wallet_id: null,
           source_wallet_id: response.data?.metadata.wallet_id as string,
           status:
-            response.data?.status !== Status.SUCCESS ? Status.FAILURE : Status.SUCCESS,
+            response.data?.status !== Status.SUCCESS
+              ? Status.FAILURE
+              : Status.SUCCESS,
           transaction_type: TransactionType.DEPOSIT,
         });
 
@@ -141,7 +153,9 @@ class WalletService {
 
       const { user_id, amount } = response.data.metadata;
 
-      const wallet: WalletType = await WalletModel.findByUserId(user_id as string);
+      const wallet: WalletType = await WalletModel.findByUserId(
+        user_id as string,
+      );
 
       await Promise.all([
         // log success transaction
@@ -169,7 +183,9 @@ class WalletService {
     }
   }
 
-  static async transferToWallet(transferReq: TransferRequest): Promise<Transaction> {
+  static async transferToWallet(
+    transferReq: TransferRequest,
+  ): Promise<Transaction> {
     const { source_wallet_id, destination_wallet_id, amount } = transferReq;
 
     const trx: Knex.Transaction<any, any[]> = await db.transaction();
