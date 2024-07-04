@@ -30,6 +30,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src", "./knexfile.ts"],
-  "exclude": ["node_modules", "__test__", "./dist"]
+  "include": ["src", "./knexfile.ts", "jest.config.js"],
+  "exclude": ["node_modules", "__tests__", "./dist", "jest.config.js"]
 }

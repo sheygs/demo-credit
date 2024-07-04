@@ -18,7 +18,6 @@ const logger: winston.Logger = winston.createLogger({
 });
 
 const exitLog = (error: Error | null, event: string): never => {
-  // eslint-disable-next-line no-useless-assignment
   let message = '';
 
   if (error) {

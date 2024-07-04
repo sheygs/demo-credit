@@ -77,3 +77,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 ### Production API Endpoint
 
 - Open browser and visit [Demo Credit Endpoint](https://olusegun-ekoh-lendsqr-be-test-production.up.railway.app/)
+
+### Video Demo
+
+- [Demo Credit API Overview]()

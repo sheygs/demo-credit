@@ -14,7 +14,6 @@ export default [
       'no-unreachable': 'error',
       'no-var': 'error',
       'no-console': 'warn',
-      'no-undef': 'error',
     },
   },
 ];
