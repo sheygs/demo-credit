@@ -118,12 +118,13 @@ class WalletService {
   static async creditWallet(fundWallet: FundWalletRequest) {
     const { reference } = fundWallet;
 
+    const trx: Knex.Transaction<any, any[]> = await db.transaction();
+
     try {
       const response = await PaystackService.verifyPaymentTransaction(reference);
 
       if (response.data?.status !== Status.SUCCESS) {
         // log error transaction
-
         await this.createTransaction({
           amount: response.data?.metadata.amount as string,
           destination_wallet_id: null,
@@ -147,7 +148,7 @@ class WalletService {
       await Promise.all([
         // log success transaction
 
-        this.createTransaction({
+        trx('transactions').insert({
           amount: response.data?.metadata.amount as string,
           destination_wallet_id: null,
           source_wallet_id: response.data?.metadata.wallet_id as string,
@@ -155,13 +156,17 @@ class WalletService {
           transaction_type: TransactionType.DEPOSIT,
         }),
 
-        await WalletModel.updateWallet('id', {
-          balance: Number(wallet.balance) + Number(amount),
-        }),
+        trx('wallets')
+          .where({ id: wallet.id })
+          .update({ balance: Number(wallet.balance) + Number(amount) }),
       ]);
 
+      await trx.commit();
+
       return response;
-    } catch (error) {
+    } catch (error: unknown) {
+      await trx.rollback();
+
       throw error;
     }
   }

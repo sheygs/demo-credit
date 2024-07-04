@@ -62,3 +62,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 ### API Documentation
 
 - Navigate to `http://localhost:8281/api-docs` on your computer to view the openapi documentation.
+
+### Production API Endpoint
+
+- Open browser and visit [Demo Credit Endpoint](https://olusegun-ekoh-lendsqr-be-test-production.up.railway.app/)
