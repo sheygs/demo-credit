@@ -18,8 +18,6 @@ class TransferController {
     try {
       const response = await WalletService.disburseToExternalAccount(req.body);
 
-      console.log({ response });
-
       successResponse(res, OK, 'withdrawal successful', response);
     } catch (error) {
       next(error);
