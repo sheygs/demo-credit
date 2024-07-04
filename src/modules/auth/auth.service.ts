@@ -9,11 +9,14 @@ import {
   SecurityUtils,
   ForbiddenException,
   UnauthorizedException,
+  Status,
 } from '../../shared';
+
+const { ERROR, SUCCESS } = Status;
 
 class AuthService {
   static async signUp(req: Req) {
-    const { email, password } = req.body;
+    const { email, password, phone_number } = req.body;
 
     try {
       const user = await UserService.findUser(email);
@@ -22,13 +25,17 @@ class AuthService {
         throw new BadRequestException('account exist');
       }
 
-      const { status, data = {}, message } = await BlackListService.verifyCustomer(email);
+      const {
+        status,
+        data = {},
+        message,
+      } = await BlackListService.verifyCustomer({ email, phone_number });
 
-      if (status === 'error') {
+      if (status === ERROR) {
         throw new UnauthorizedException(message);
       }
 
-      if (status === 'success' && Object.keys(data).length) {
+      if (status === SUCCESS && Object.keys(data).length) {
         throw new ForbiddenException('this account has been blacklisted');
       }
 

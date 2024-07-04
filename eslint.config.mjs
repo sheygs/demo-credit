@@ -14,7 +14,7 @@ export default [
       'no-unreachable': 'error',
       'no-var': 'error',
       'no-console': 'warn',
-      'no-unused-vars': 'warn',
+      //'no-unused-vars': 'warn',
       eqeqeq: 'off',
       'space-before-blocks': 'error',
       'no-await-in-loop': 'warn',
