@@ -52,7 +52,9 @@ class Model {
     return this.table.where('id', id).first();
   }
 
-  public static async findBy<Payload, T>(data: Payload): ResponseType<T | null> {
+  public static async findBy<Payload, T>(
+    data: Payload,
+  ): ResponseType<T | null> {
     return this.table.where(data as any).first();
   }
 }

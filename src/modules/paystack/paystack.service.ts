@@ -30,7 +30,8 @@ class PaystackService {
   ): Promise<{
     authorization_url: string | undefined;
   }> {
-    const { amount, email, currency, wallet_id, user_id } = initializePaymentReq;
+    const { amount, email, currency, wallet_id, user_id } =
+      initializePaymentReq;
 
     try {
       const initialize: TransactionInitialized | BadRequest =
@@ -73,8 +74,11 @@ class PaystackService {
     }
   }
 
-  static async createTransferRecipient(transferRecipient: TransferRecipientReq) {
-    const { type, name, account_number, bank_code, currency } = transferRecipient;
+  static async createTransferRecipient(
+    transferRecipient: TransferRecipientReq,
+  ) {
+    const { type, name, account_number, bank_code, currency } =
+      transferRecipient;
 
     try {
       const recipient = await paystack.recipient.create({

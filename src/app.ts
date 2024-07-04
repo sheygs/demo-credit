@@ -3,6 +3,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import compression from 'compression';
 import express, { Application as App, urlencoded, json } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json';
 import {
   config,
   Env,
@@ -27,6 +29,8 @@ export const middlewares = (app: App): express.Application => {
   if (config.app.environment !== Env.TEST) {
     app.use(morgan('dev'));
   }
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use(indexRoute);
   defaultErrorHandler(app);

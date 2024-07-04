@@ -40,11 +40,17 @@ export const config: Config = {
      *  JWT Secret Expiry
      */
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '',
-
+    /**
+     *  SaltOrRounds
+     */
     saltRounds: '10',
-
-    adjutorApiSecret: process.env.APP_SECRET_KEY ?? 'mySecret',
-
+    /**
+     *  Adjutor API Secret
+     */
+    adjutorApiSecret: process.env.ADJUTOR_SECRET_KEY ?? 'mySecret',
+    /**
+     *  Paystack API Key
+     */
     payStackApiKey: process.env.PAYSTACK_API_KEY ?? '',
   },
   database: {

@@ -8,7 +8,9 @@ const logger: winston.Logger = winston.createLogger({
     timestamp({
       format: 'YYYY-MM-DD HH:mm:ss',
     }),
-    printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`),
+    printf(
+      ({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`,
+    ),
   ),
   transports: [
     new winston.transports.Console(),
@@ -18,7 +20,6 @@ const logger: winston.Logger = winston.createLogger({
 });
 
 const exitLog = (error: Error | null, event: string): never => {
-  // eslint-disable-next-line no-useless-assignment
   let message = '';
 
   if (error) {

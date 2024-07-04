@@ -1,4 +1,8 @@
-import { Request as Req, Response as Res, NextFunction as NextFn } from 'express';
+import {
+  Request as Req,
+  Response as Res,
+  NextFunction as NextFn,
+} from 'express';
 import { OK } from 'http-status';
 import { successResponse } from '../../shared';
 import { WalletService } from '../wallet';
@@ -17,8 +21,6 @@ class TransferController {
   static async createWithdrawal(req: Req, res: Res, next: NextFn) {
     try {
       const response = await WalletService.disburseToExternalAccount(req.body);
-
-      console.log({ response });
 
       successResponse(res, OK, 'withdrawal successful', response);
     } catch (error) {

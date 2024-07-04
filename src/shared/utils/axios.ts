@@ -13,7 +13,10 @@ class Axios {
         },
       };
 
-      const { data } = await axios.get(`${this.API_BASE_URL}/${endpoint}`, options);
+      const { data } = await axios.get(
+        `${this.API_BASE_URL}/${endpoint}`,
+        options,
+      );
 
       return data;
     } catch (error: any) {

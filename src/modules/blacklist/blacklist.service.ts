@@ -4,11 +4,22 @@ const {
   app: { adjutorApiSecret },
 } = config;
 
+interface UserIdentity {
+  email?: string;
+  phone_number?: string;
+}
+
 class BlackListService {
-  static async verifyCustomer(email: string) {
+  static async verifyCustomerBlackListStatus(payload: UserIdentity) {
+    const { email, phone_number } = payload;
+
+    const identity = email ? email : phone_number;
+
+    const endpoint = `verification/karma/${identity}`;
+
     try {
       const result = await axiosInstance.get<BlackListedResponse>(
-        `verification/karma/${email}`,
+        endpoint,
         adjutorApiSecret,
       );
 

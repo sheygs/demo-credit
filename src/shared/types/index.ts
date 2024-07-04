@@ -6,6 +6,7 @@ enum Env {
 
 enum Status {
   SUCCESS = 'success',
+  ERROR = 'error',
   FAILURE = 'failure',
 }
 
@@ -15,11 +16,10 @@ enum TransactionType {
   TRANSFER = 'transfer',
 }
 
-export enum RequestPath {
+enum RequestPath {
   BODY = 'body',
   QUERY = 'query',
   PARAMS = 'params',
-  HEADERS = 'headers',
 }
 
 type AppResponse = {
@@ -162,6 +162,7 @@ export {
   Env,
   Status,
   TransactionType,
+  RequestPath,
   AppResponse,
   SuccessResponse,
   FailureResponse,

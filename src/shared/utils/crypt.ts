@@ -13,7 +13,9 @@ class SecurityUtils {
     return bcrypt.compare(value, hashedValue);
   }
 
-  static getEnumValues<T extends Record<string, string>>(enumType: T): string[] {
+  static getEnumValues<T extends Record<string, string>>(
+    enumType: T,
+  ): string[] {
     return Object.values(enumType);
   }
 }

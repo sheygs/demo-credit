@@ -50,7 +50,9 @@ export const failureResponse = (
     error: {
       name: error.name,
       message: error.message,
-      ...(config.app.environment === 'production' ? null : { stack: error.stack }),
+      ...(config.app.environment === 'production'
+        ? null
+        : { stack: error.stack }),
     },
   };
 

@@ -1,4 +1,8 @@
-import { Request as Req, Response as Res, NextFunction as NextFn } from 'express';
+import {
+  Request as Req,
+  Response as Res,
+  NextFunction as NextFn,
+} from 'express';
 import { CREATED, OK } from 'http-status';
 import { successResponse } from '../../shared';
 import { WalletService } from './wallet.service';
