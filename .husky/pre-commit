@@ -1,1 +1,1 @@
-npm run prettier:check && npm run lint && npm run test
+npm run prettify:check && npm run lint && npm run test
