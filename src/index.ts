@@ -1,5 +1,3 @@
-// require('module-alias/register');
-
 import { hostname } from 'os';
 import express, { Express } from 'express';
 import { createServer } from 'http';

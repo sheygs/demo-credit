@@ -9,4 +9,3 @@ const environment = app.environment;
 const knexConfig = configs[environment];
 
 export const db = Knex(knexConfig);
-

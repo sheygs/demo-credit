@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { WalletController } from '../../modules';
+import { RequestPath } from '../types';
+import { verifyAuthToken } from '../middlewares';
 import {
   createWalletSchema,
   validateRequest,
@@ -8,8 +10,6 @@ import {
   initializePaymentSchema,
   creditWalletSchema,
 } from '../utils';
-import { RequestPath } from '../types';
-import { verifyAuthToken } from '../middlewares';
 
 const walletRouter: Router = Router();
 

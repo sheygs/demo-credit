@@ -38,6 +38,9 @@ services:
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - APP_SECRET_KEY=${APP_SECRET_KEY}
+      - API_BASE_URL=${APP_BASE_URL}
+      - PAYSTACK_API_KEY=${PAYSTACK_API_KEY}
 
     ports:
       - '8281:8282'

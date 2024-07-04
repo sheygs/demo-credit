@@ -126,7 +126,7 @@ export interface Meta {
   balance: number;
 }
 
-interface InitializePaymentReq {
+interface InitializePaymentRequest {
   amount: string;
   email: string;
   currency: string | undefined;
@@ -147,10 +147,15 @@ interface TransferRequest {
 
 interface TransactionRequest {
   source_wallet_id: string;
-  destination_wallet_id: string | undefined;
+  destination_wallet_id: string | null;
   amount: string;
   transaction_type: string;
-  status: string;
+  status: string | null;
+}
+
+interface DisbursementRequest {
+  wallet_id: string;
+  amount: string;
 }
 
 export {
@@ -164,8 +169,9 @@ export {
   BlackListedResponse,
   Config,
   ObjectProps,
-  InitializePaymentReq,
+  InitializePaymentRequest,
   FundWalletRequest,
   TransferRequest,
   TransactionRequest,
+  DisbursementRequest,
 };

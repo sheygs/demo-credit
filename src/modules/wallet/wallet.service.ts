@@ -5,6 +5,7 @@ import { UserModel, UserType } from '../user';
 import { WalletType, WalletModel } from './index';
 import {
   db,
+  DisbursementRequest,
   FundWalletRequest,
   NotFoundException,
   Status,
@@ -88,7 +89,7 @@ class WalletService {
 
       await this.createTransaction({
         source_wallet_id: wallet_id,
-        destination_wallet_id: undefined,
+        destination_wallet_id: null,
         amount,
         transaction_type: TransactionType.DEPOSIT,
         status: Status.SUCCESS,
@@ -114,35 +115,50 @@ class WalletService {
     }
   }
 
-  static async creditWallet(payload: FundWalletRequest) {
-    try {
-      const response = await PaystackService.verifyPaymentTransaction(
-        payload.reference,
-      );
+  static async creditWallet(fundWallet: FundWalletRequest) {
+    const { reference } = fundWallet;
 
-      if (response.data?.status !== 'success') {
+    try {
+      const response = await PaystackService.verifyPaymentTransaction(reference);
+
+      if (response.data?.status !== Status.SUCCESS) {
         // log error transaction
+
+        await this.createTransaction({
+          amount: response.data?.metadata.amount as string,
+          destination_wallet_id: null,
+          source_wallet_id: response.data?.metadata.wallet_id as string,
+          status:
+            response.data?.status !== Status.SUCCESS
+              ? Status.FAILURE
+              : Status.SUCCESS,
+          transaction_type: TransactionType.DEPOSIT,
+        });
 
         throw new UnprocessableEntityException(
           response.data?.gateway_response || 'payment verification failed',
         );
       }
 
-      console.log({
-        //   message: response.message,
-        //   status: response.status,
-        //   reference: response.data.reference,
-        //   amount: response.data.amount,
-        //   metadata: response.data.metadata,
-        //   typeof: typeof response.data.metadata,
-        //   amount: response.data.metadata.amount,
-        //   user_id,
-        //   currency,
-        //   transactionStatus: response.data.status,
-        //   gateway_response: response.data.gateway_response,
-      });
+      const { user_id, amount } = response.data.metadata;
 
-      await WalletModel.updateWallet('id', {});
+      const wallet: WalletType = await WalletModel.findByUserId(user_id as string);
+
+      await Promise.all([
+        // log success transaction
+
+        this.createTransaction({
+          amount: response.data?.metadata.amount as string,
+          destination_wallet_id: null,
+          source_wallet_id: response.data?.metadata.wallet_id as string,
+          status: Status.SUCCESS,
+          transaction_type: TransactionType.DEPOSIT,
+        }),
+
+        await WalletModel.updateWallet('id', {
+          balance: Number(wallet.balance) + Number(amount),
+        }),
+      ]);
 
       return response;
     } catch (error) {
@@ -197,7 +213,7 @@ class WalletService {
       await trx.commit();
 
       return transaction;
-    } catch (error) {
+    } catch (error: unknown) {
       await trx.rollback();
 
       throw error;
@@ -210,6 +226,48 @@ class WalletService {
 
       return transaction;
     } catch (error) {
+      throw error;
+    }
+  }
+
+  static async disburseToExternalAccount(disbursementReq: DisbursementRequest) {
+    const { wallet_id, amount } = disbursementReq;
+
+    const trx: Knex.Transaction<any, any[]> = await db.transaction();
+
+    try {
+      const wallet = await WalletService.getWalletByID(wallet_id);
+
+      if (Number(wallet.balance) < Number(amount)) {
+        await trx.rollback();
+        throw new UnprocessableEntityException('Insufficient funds');
+      }
+
+      const newBalance = Number(wallet.balance) - Number(amount);
+
+      const [, [transaction_id]] = await Promise.all([
+        trx('wallets').where({ id: wallet_id }).update({ balance: newBalance }),
+
+        trx('transactions').insert({
+          source_wallet_id: wallet.id,
+          destination_wallet_id: null,
+          amount,
+          transaction_type: TransactionType.WITHDRAWAL,
+          status: Status.SUCCESS,
+        }),
+      ]);
+
+      const transaction: Transaction = await trx('transactions')
+        .where({
+          id: transaction_id,
+        })
+        .first();
+
+      await trx.commit();
+
+      return transaction;
+    } catch (error: unknown) {
+      await trx.rollback();
       throw error;
     }
   }
