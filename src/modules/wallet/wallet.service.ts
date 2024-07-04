@@ -239,13 +239,13 @@ class WalletService {
       const wallet = await WalletService.getWalletByID(wallet_id);
 
       if (Number(wallet.balance) < Number(amount)) {
-        trx.rollback();
+        await trx.rollback();
         throw new UnprocessableEntityException('Insufficient funds');
       }
 
       const newBalance = Number(wallet.balance) - Number(amount);
 
-      const [, transaction_id] = await Promise.all([
+      const [, [transaction_id]] = await Promise.all([
         trx('wallets').where({ id: wallet_id }).update({ balance: newBalance }),
 
         trx('transactions').insert({
@@ -267,7 +267,7 @@ class WalletService {
 
       return transaction;
     } catch (error: unknown) {
-      trx.rollback();
+      await trx.rollback();
       throw error;
     }
   }
