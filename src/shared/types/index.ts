@@ -173,5 +173,5 @@ export {
   FundWalletRequest,
   TransferRequest,
   TransactionRequest,
-  DisbursementRequest
+  DisbursementRequest,
 };
