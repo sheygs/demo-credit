@@ -7,12 +7,7 @@ import {
 
 import { BaseException, failureResponse } from '../utils';
 
-const handleGlobalError = (
-  error: unknown,
-  _: Req,
-  res: Res,
-  _next: NextFunc,
-): void => {
+const handleGlobalError = (error: unknown, _: Req, res: Res, _next: NextFunc): void => {
   if (error instanceof BaseException) {
     failureResponse(error, res, error.code);
   }

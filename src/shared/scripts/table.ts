@@ -6,8 +6,7 @@ const {
   database: { host, user, password, name, port },
 } = config;
 
-const { getMigrationDirectory, executeMigration, getMigrationFiles } =
-  MigrationManager;
+const { getMigrationDirectory, executeMigration, getMigrationFiles } = MigrationManager;
 
 // directory containing the migration files
 const migrationsDir = getMigrationDirectory('database/migrations');
@@ -30,9 +29,7 @@ const migrationsDir = getMigrationDirectory('database/migrations');
     logger.info('connected to the database');
 
     // execute all migration files in parallel
-    await Promise.all(
-      migrationFiles.map((file) => executeMigration(connection, file)),
-    );
+    await Promise.all(migrationFiles.map((file) => executeMigration(connection, file)));
 
     logger.info('migrations executed ✅');
 

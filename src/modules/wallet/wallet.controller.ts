@@ -19,10 +19,7 @@ class WalletController {
     const { wallet_id, amount } = req.body;
 
     try {
-      const response = await WalletService.initializePayment(
-        wallet_id,
-        String(amount),
-      );
+      const response = await WalletService.initializePayment(wallet_id, String(amount));
 
       successResponse<{
         authorization_url: string | undefined;

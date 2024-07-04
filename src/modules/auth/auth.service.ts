@@ -22,11 +22,7 @@ class AuthService {
         throw new BadRequestException('account exist');
       }
 
-      const {
-        status,
-        data = {},
-        message,
-      } = await BlackListService.verifyCustomer(email);
+      const { status, data = {}, message } = await BlackListService.verifyCustomer(email);
 
       if (status === 'error') {
         throw new UnauthorizedException(message);

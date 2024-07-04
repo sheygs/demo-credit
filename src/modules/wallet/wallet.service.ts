@@ -130,9 +130,7 @@ class WalletService {
           destination_wallet_id: null,
           source_wallet_id: response.data?.metadata.wallet_id as string,
           status:
-            response.data?.status !== Status.SUCCESS
-              ? Status.FAILURE
-              : Status.SUCCESS,
+            response.data?.status !== Status.SUCCESS ? Status.FAILURE : Status.SUCCESS,
           transaction_type: TransactionType.DEPOSIT,
         });
 

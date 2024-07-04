@@ -5,12 +5,7 @@ import compression from 'compression';
 import express, { Application as App, urlencoded, json } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
-import {
-  config,
-  Env,
-  defaultErrorHandler,
-  indexRouter as indexRoute,
-} from './shared';
+import { config, Env, defaultErrorHandler, indexRouter as indexRoute } from './shared';
 
 export const middlewares = (app: App): express.Application => {
   app.enable('trust proxy');

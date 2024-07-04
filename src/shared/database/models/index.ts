@@ -36,10 +36,7 @@ class Model {
     }
   }
 
-  public static async update<Payload, T>(
-    id: string,
-    data: Payload,
-  ): ResponseType<T> {
+  public static async update<Payload, T>(id: string, data: Payload): ResponseType<T> {
     await this.table.where({ id }).update(data);
 
     // fetch the inserted user data using the id
