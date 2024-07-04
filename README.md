@@ -59,9 +59,11 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
    $ npm run test
 ```
 
-### API Documentation
+### Postman Documentation
 
-- Navigate to `http://localhost:8281/api-docs` on your computer to view the openapi documentation.
+- Navigate to `{{base_url}}/api-docs` on your computer to view the openapi documentation
+  where `base_url` is `http://localhost:8281` or deployed url
+- See `postman` folder in the root directory.
 
 ### Production API Endpoint
 
