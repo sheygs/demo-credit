@@ -1,33 +1,9 @@
-import { hostname } from 'os';
-import express, { Express } from 'express';
-import { createServer } from 'http';
+import express from 'express';
 import { middlewares } from './app';
-import { config, exitLog } from './shared';
+import { startServer } from './server';
+import { Env } from '../src/shared';
 
-const {
-  app: { environment, port },
-} = config;
-
-const app: Express = express();
-
-middlewares(app);
-
-const server = createServer(app);
-
-process
-  .on('SIGINT', () => exitLog(null, 'SIGINT'))
-  .on('SIGQUIT', () => exitLog(null, 'SIGQUIT'))
-  .on('SIGTERM', () => exitLog(null, 'SIGTERM'))
-  .on('uncaughtException', (error) => exitLog(error, 'uncaughtException'))
-  .on('beforeExit', () => exitLog(null, 'beforeExit'))
-  .on('exit', () => exitLog(null, 'exit'));
-
-server.listen({ port }, (): void => {
-  process.stdout.write(`⚙️ Env: ${environment}\n`);
-  process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
-  process.stdout.write(
-    `🚀 demo-credit api running on http://${hostname()}:${port}\n`,
-  );
-});
-
-export { server };
+if (process.env.NODE_ENV !== Env.TEST) {
+  const app = middlewares(express());
+  startServer(app);
+}
