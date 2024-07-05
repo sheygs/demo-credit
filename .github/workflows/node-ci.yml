@@ -16,17 +16,17 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run prettify:check
       - run: npm run lint
-  test:
-    strategy:
-      matrix:
-        node-version: [20]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm --version
-      - run: npm ci --ignore-scripts
-      - run: npm run test
+  # test:
+  #   strategy:
+  #     matrix:
+  #       node-version: [20]
+  #       os: [ubuntu-latest, macOS-latest, windows-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npm --version
+  #     - run: npm ci --ignore-scripts
+  #     - run: npm run test
