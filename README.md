@@ -16,7 +16,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 
 ### E-R Diagram
 
-![E-R Diagram](./demo-credit-E-R-diagram.png)
+![E-R Diagram](./E-R-diagram.png)
 
 ### Features
 
