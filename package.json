@@ -67,6 +67,7 @@
     "helmet": "^7.1.0",
     "http-status": "^1.7.4",
     "husky": "^9.0.11",
+    "jest-mock-axios": "^4.7.3",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",

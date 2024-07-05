@@ -35,3 +35,4 @@ class Axios {
 }
 
 export const axiosInstance = new Axios(config.app.baseUrl);
+export { Axios };
