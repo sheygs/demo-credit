@@ -1,12 +1,4 @@
 services:
-  redis:
-    container_name: redis
-    image: redis:alpine
-    restart: always
-    ports:
-      - '6379:6379'
-    volumes:
-      - ./volumes/cache:/data
   mysql:
     container_name: mysql
     image: mysql
@@ -49,5 +41,3 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-      redis:
-        condition: service_started
