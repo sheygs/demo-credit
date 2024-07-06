@@ -2,10 +2,6 @@
 
 > Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.
 
-### Objective
-
-Demo Credit is a mobile lending app that includes wallet functionality. Borrowers use the wallet to receive granted loans and make repayments.
-
 ### High Level Overview
 
 - [Demo Credit Docs](https://www.notion.so/Demo-Credit-acb077a3a22141e7b3dc5e01c92b5158)
