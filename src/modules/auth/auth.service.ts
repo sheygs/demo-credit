@@ -20,7 +20,7 @@ class AuthService {
       const user = await UserService.findUser(email);
 
       if (user) {
-        throw new BadRequestException('account exist');
+        throw new UnprocessableEntityException('account already exists');
       }
 
       const {
@@ -36,7 +36,7 @@ class AuthService {
         throw new UnauthorizedException(message);
       }
 
-      if (status === Status.SUCCESS && Object.keys(data).length) {
+      if (status === Status.SUCCESS && Object.keys(data)?.length) {
         throw new ForbiddenException('account has been blacklisted');
       }
 
@@ -51,11 +51,11 @@ class AuthService {
         password: hashed,
       });
 
-      const token = this.generateToken(createdUser);
-
       if (!createdUser) {
         throw new UnprocessableEntityException('unable to create user');
       }
+
+      const token = this.generateToken(createdUser);
 
       Reflect.deleteProperty(createdUser, 'password');
 
