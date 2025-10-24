@@ -57,15 +57,15 @@ export const config: Config = {
     /**
      *  Database User
      */
-    user: process.env.MYSQL_USER ?? 'mysql',
+    user: process.env.MYSQL_USER ?? 'root',
     /**
      *  Database Password
      */
     password: process.env.MYSQL_PASSWORD ?? '',
     /**
-     *  Database Port
+     *  Database Port (MySQL default is 3306, not 5432)
      */
-    port: process.env.MYSQL_PORT ?? 5432,
+    port: process.env.MYSQL_PORT ?? 3306,
     /**
      *  Database Host
      */
