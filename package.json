@@ -19,7 +19,7 @@
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "migrate": "ts-node ./src/shared/scripts/table.ts",
-    "postinstall": "npm rebuild bcrypt --build-from-source || true",
+    "postinstall": "npm rebuild bcrypt || true",
     "prepare": "husky"
   },
   "keywords": [
