@@ -191,19 +191,38 @@ class WalletService {
     const trx: Knex.Transaction<any, any[]> = await db.transaction();
 
     try {
+      // SECURITY FIX: Use SELECT ... FOR UPDATE to lock rows and prevent race conditions
+      // This ensures that concurrent transactions cannot read the same balance simultaneously
+      // preventing the check-then-act race condition that allows overdrafts
       const [sourceWallet, destinationWallet] = await Promise.all([
-        WalletService.getWalletByID(source_wallet_id),
-        WalletService.getWalletByID(destination_wallet_id),
+        trx('wallets').where({ id: source_wallet_id }).forUpdate().first(),
+        trx('wallets').where({ id: destination_wallet_id }).forUpdate().first(),
       ]);
 
-      const sourceBalance = Number(sourceWallet.balance);
+      if (!sourceWallet) {
+        throw new NotFoundException('Source wallet not found');
+      }
 
+      if (!destinationWallet) {
+        throw new NotFoundException('Destination wallet not found');
+      }
+
+      const sourceBalance = Number(sourceWallet.balance);
       const destinationBalance = Number(destinationWallet.balance);
 
+      // Prevent self-transfer
+      if (source_wallet_id === destination_wallet_id) {
+        throw new UnprocessableEntityException(
+          'Cannot transfer to same wallet',
+        );
+      }
+
+      // Now this check is safe - rows are locked, no race condition possible
       if (sourceBalance < Number(amount)) {
         throw new UnprocessableEntityException('Insufficient funds');
       }
 
+      // Update balances with locked rows
       await Promise.all([
         trx('wallets')
           .where({ id: source_wallet_id })
@@ -255,10 +274,19 @@ class WalletService {
     const trx: Knex.Transaction<any, any[]> = await db.transaction();
 
     try {
-      const wallet = await WalletService.getWalletByID(wallet_id);
+      // SECURITY FIX: Lock the wallet row to prevent race conditions
+      // Use forUpdate() to ensure no concurrent withdrawals can overdraft the account
+      const wallet = await trx('wallets')
+        .where({ id: wallet_id })
+        .forUpdate()
+        .first();
 
+      if (!wallet) {
+        throw new NotFoundException('Wallet not found');
+      }
+
+      // Now this check is safe - wallet row is locked
       if (Number(wallet.balance) < Number(amount)) {
-        await trx.rollback();
         throw new UnprocessableEntityException('Insufficient funds');
       }
 

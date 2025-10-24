@@ -1,8 +1,8 @@
-### demo-credit
+# demo-credit
 
 > Demo Credit is a mobile lending app with wallet functionality for borrowers to receive loans and make repayments.
 
-### High Level Overview
+## High Level Overview
 
 - [Demo Credit Docs](https://www.notion.so/Demo-Credit-acb077a3a22141e7b3dc5e01c92b5158)
 
@@ -42,7 +42,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 ### Installation 📦
 
 ```bash
-   $ git clone https://github.com/sheygs/demo-credit.git
+   git clone https://github.com/sheygs/demo-credit.git
    $ cd backend
    $ npm install
 ```
@@ -61,7 +61,7 @@ Overall, the project is designed to be scalable, maintainable and extensible. Th
 ### Test
 
 ```bash
-   $ npm run test
+   $npm run test
 ```
 
 ### Postman Documentation

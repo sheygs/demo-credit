@@ -143,3 +143,5 @@ dist-ssr
 *.sw?
 reference.md
 volumes
+SECURITY_CHECKLIST.md
+SECURITY_FIXES_SUMMARY.md
