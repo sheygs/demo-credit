@@ -4,13 +4,9 @@
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "target": "es6",
     "useDefineForClassFields": true,
-    "module": "commonjs",
+    "module": "node16",
     "rootDir": ".",
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "moduleResolution": "node16",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "sourceMap": true,
